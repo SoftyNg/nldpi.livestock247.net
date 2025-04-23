@@ -1,0 +1,1183 @@
+
+
+#logo{
+
+    margin-top:30px;
+
+    
+
+}
+
+
+
+.meat247-message{
+
+    margin-top:40px;
+
+}
+
+
+
+.feedback{
+
+  margin-top: 30px;
+
+  padding-top: 20px;
+
+  padding-bottom: 50px;
+
+  border: 1px solid #E6E6E6 !important;
+
+  border-radius: 8px !important;
+
+}
+
+
+
+#meat247-design, .feedback > p > span {
+
+    color:#62a6e4;
+
+}
+
+
+
+.feedback-message{
+
+  height: 150px;
+
+}
+
+.meat247-table-bg{
+
+    background-color:#197dd8;
+
+    padding: 40px 10px;
+
+    border-radius:12px;
+
+    margin-left:20px;
+
+    box-shadow: 5px 5px 5px 2px #c3c3c3;
+
+    /*min-height:600px;*/
+
+
+
+}
+
+
+
+.meat247-table-bg-extra{
+
+    display:flex;
+
+    justify-content: center;
+
+}
+
+
+
+.meat247-table-bg > h6{
+
+    color:white !important;
+
+    font-weight:bolder;
+
+    margin-bottom: 20px !important;
+
+    text-align:center;
+
+}
+
+
+
+.meat247-table-bg-extra > table{
+
+    background-color:white;
+
+
+
+}
+
+
+
+
+
+.meat247-table-bg-extra > table > tbody > tr > td{
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+    height: 64px;
+
+    text-align:left;
+
+
+
+    border-bottom:1px solid  #197dd8;
+
+    border-right: 1px solid  #197dd8;
+
+}
+
+
+
+.meat247-preview{
+
+    display: flex;
+
+    justify-content:space-between;
+
+    margin-top:43px;
+
+    margin-left:20px;
+
+}
+
+
+
+.message{
+
+    height:30px;
+
+    border: 1px solid #197dd8; 
+
+    border-color:#197dd8;
+
+    box-shadow: 0px 5px 5px 0px #c3c3c3;
+
+}
+
+
+
+.message:hover{
+
+    border: 1px solid #197dd8; 
+
+    border-radius: 0;
+
+     outline-color: #197dd8;
+
+}
+
+
+
+.button-bg{
+
+    padding:8px 14px;
+
+    margin-top:8px;
+
+    background-color:#197dd8;
+
+    border:1px solid  #197dd8; 
+
+    border-radius: 3px !important;
+
+    color:white;
+
+    float:right;
+
+    clear:right;
+
+
+
+}
+
+
+
+.button-bg:hover{
+
+    border: 1px solid  #197dd8; 
+
+
+
+}
+
+.button-bg, .message:focus {
+
+    outline: 0;
+
+    border-radius: 0;
+
+}
+
+
+
+.section:nth-child(4) {
+
+    background-image: none;;
+
+    height: 0;
+
+}
+
+
+
+@media (min-width: 767px) and (max-width: 991px) {
+
+    .meat247-table-bg{
+
+      padding: 40px 10px;
+
+    
+
+    }
+
+    
+
+
+
+}
+
+
+
+@media only screen and (max-width: 767px) {
+
+    .meat247-table-bg{
+
+        max-width:300px;
+
+        margin-left:5px;
+
+    }
+
+    
+
+    #meat247-design, .feedback > p{
+
+    margin-top: 30px;
+
+    }
+
+    .meat247-preview{
+
+        margin-top: 14px; 
+
+        margin-bottom: 14px;
+
+        margin-left:5px;
+
+
+
+    }
+
+    
+
+
+
+    
+
+}
+
+
+
+@media (min-width: 480px) and (max-width: 767px) {
+
+    .meat247-preview > #print-invoice{
+
+        margin-right:190px;
+
+    }
+
+    .input-group > .message{
+
+        max-width: 240px;
+
+    }
+
+
+
+
+
+}
+
+
+
+@media (min-width: 360px) and (max-width: 479px) {
+
+    .meat247-preview > #print-invoice{
+
+        margin-right:60px;
+
+    }
+
+
+
+    .input-group > .message{
+
+        max-width: 240px;
+
+    }
+
+
+
+
+
+}
+
+
+
+/*shopping cart*/
+
+.menu-wrapper{
+
+  padding: 18px 0px;
+
+  margin:0px;
+
+  box-shadow: 0px 1px 0px 0px #E5E5E5;
+
+}
+
+.menu-nav, .container-wrapper{
+
+    width: 85%;
+
+    margin:auto;
+
+}
+
+ .menu-nav > .navbar-menu{
+
+    
+
+    display: flex;
+
+    justify-content: space-between;   
+
+    
+
+ }
+
+
+
+ .navbar-brand > img{ 
+
+  width: 183px;
+
+  height: 40px;
+
+  flex-shrink: 0;
+
+}
+
+
+
+.has-search .form-control {
+
+    padding-left: 2.375rem;
+
+    width: 300px;
+
+}
+
+
+
+.has-search .form-control-feedback {
+
+  position: absolute;
+
+  z-index: 2;
+
+  display: block;
+
+  width: 2.375rem;
+
+  height: 2.375rem;
+
+  line-height: 2.375rem;
+
+  text-align: center;
+
+  pointer-events: none;
+
+  color: #aaa;
+
+}
+
+
+
+.navbar-search{
+
+ margin-top: 8px;
+
+}
+
+
+
+.has-search > input{
+
+  border-top-right-radius: 0 !important;
+
+  border-bottom-right-radius: 0 !important;
+
+}
+
+
+
+.btn-search{
+
+  width: 100px;
+
+  background-color: #006ED4;
+
+  color:white;
+
+  border-top-left-radius: 0 !important;
+
+  border-bottom-left-radius: 0 !important;
+
+}
+
+
+
+.navbar-support{
+
+  margin-left: 25px;
+
+  display:flex;
+
+  justify-content: space-between;  
+
+  width:250px
+
+  
+
+
+
+}
+
+.navbar-support > span{
+
+  color: #1A1A1A;
+
+  position: relative;
+
+}
+
+span > a > .cart-count{
+
+ position: absolute;
+
+ top: -8px;
+
+ left: 10px;
+
+ background-color:#197dd8;   
+
+ color: #ffffff;
+
+ width: 20px;
+
+ height:20px;
+
+ font-size:smaller;
+
+ border-radius: 50%;
+
+ display:flex;
+
+ align-items:center;
+
+ justify-content:center; 
+
+ text-align:center;
+
+}
+
+.navbar-support > span > a{
+
+  color: #1A1A1A;
+
+  text-decoration: none;
+
+}
+
+
+
+.navbar-support > .user-info > a{
+
+  color: #04990B;
+
+  text-decoration: none;
+
+}
+
+
+
+.user-info{
+
+  background-color:#E6F5E7;
+
+  width: 30px;
+
+  height:30px;
+
+  border-radius: 50%;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+}
+
+
+
+.user-info-mobile{ 
+
+  display:none;
+
+}
+
+.container-wrapper > h2{
+
+  font-weight: 600;
+
+}
+
+
+
+.product-listing{
+
+  border: 1px solid #E6E6E6;
+
+  width: 844px;
+
+
+
+  flex-shrink: 0;
+
+  border-radius: 8px;
+
+  background:  #ffffff;
+
+  padding-bottom: 10px;
+
+
+
+}
+
+
+
+.table-2{
+
+  display:none;
+
+}
+
+
+
+  table td{
+
+
+
+ padding-top: 20px;
+
+ vertical-align: middle !important;
+
+ border-top: none !important;
+
+ border-bottom: 1px solid #E6E6E6 !important;
+
+ color: #1A1A1A;
+
+}
+
+
+
+.table thead th{
+
+  vertical-align: bottom;
+
+ border-bottom: 1px solid #E6E6E6 !important;
+
+}
+
+
+
+.table th
+
+{
+
+  color: #808080;
+
+  border-top: none !important;
+
+  color: #808080;
+
+  font-size: 14px;
+
+  font-style: normal;
+
+  font-weight: 500;
+
+  line-height: 150%; /* 21px */
+
+  text-transform: uppercase;
+
+}
+
+
+
+input,
+
+textarea {
+
+  border: 1px solid #eeeeee;
+
+  box-sizing: border-box;
+
+  margin: 0;
+
+  outline: none;
+
+  padding: 10px;
+
+}
+
+
+
+input[type="button"] {
+
+  -webkit-appearance: button;
+
+  cursor: pointer;
+
+}
+
+
+
+input::-webkit-outer-spin-button,
+
+input::-webkit-inner-spin-button {
+
+  -webkit-appearance: none;
+
+}
+
+
+
+.quantity-field{
+
+  width:38px;
+
+  text-align:center;
+
+  border: none;
+
+  outline: none;
+
+  margin-top:8px;
+
+  line-height: 5px;
+
+  font-weight:bold;
+
+}
+
+
+
+.button-minus, .button-plus{
+
+  margin-top:8px;
+
+  vertical-align: middle;
+
+  width: 32px;
+
+  height: 32px;
+
+  background-color: #F2F2F2;
+
+  line-height: 10px;
+
+  border-radius:4px;
+
+  font-weight:bold;
+
+}
+
+
+
+.quantity-box{
+
+  display: inline-flex;
+
+  padding: 0px 0px;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 0px;
+
+  border: 1px solid #E6E6E6;
+
+}
+
+
+
+.subtotal-delete{
+
+  margin-top:8px;
+
+  width: 32px;
+
+  height: 32px;
+
+  border-radius:4px;
+
+  display: flex;
+
+  justify-content:center;
+
+  border: 1px solid #E6E6E6;
+
+  align-items: center;
+
+}
+
+
+
+
+
+.subtotal{
+
+  display: inline-flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+
+
+
+
+.subtotal-delete {
+
+  flex: 1;
+
+  margin: 10px;
+
+}
+
+
+
+.product-footer{
+
+  display: flex;
+
+  width: 828px;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  border-radius: 10px;
+
+}
+
+.return-to-shop, .track-order{
+
+  display: flex;
+
+  padding: 14px 32px;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-radius: 8px;
+
+  background: #E6F1FB;  
+
+}
+
+
+
+.product-details{
+
+  /*width: 408px;*/
+
+  height: 600px;
+
+  margin-top: 16px;
+
+  margin-bottom: 16px;
+
+}
+
+
+
+.customer-details{
+
+  /*width: 408px;*/
+
+  height: 329px;
+
+  padding: 16px;
+
+  border-radius: 8px;
+
+  border: 1px;
+
+  margin-bottom:24px;
+
+  border: 1px solid #E6E6E6;
+
+  border-radius: 8px;
+
+}
+
+
+
+
+
+
+
+.coupon-group{
+
+  display: inline-flex;
+
+  width:100%;
+
+}
+
+.coupon{
+
+  border-top-right-radius: unset !important;
+
+  border-bottom-right-radius: unset !important;
+
+
+
+}
+
+
+
+.coupon-btn{
+
+  border-top-left-radius: unset !important;
+
+  border-bottom-left-radius: unset !important;
+
+}
+
+
+
+.order-summary{
+
+  
+
+  border-radius: 8px;
+
+  margin: 12px 0px;
+
+  border: 1px solid #E6E6E6;
+
+  border-radius: 8px;
+
+  /*width:408px;*/
+
+  height:120px;
+
+  background-color: #E6F5E7;
+
+}
+
+
+
+.Subtotal, .Shipping, .Total{
+
+  display:flex;
+
+  justify-content:space-between;
+
+}
+
+
+
+.delivery-address, .phone-number, .coupon{
+
+  color: #999999;
+
+}
+
+
+
+.payment-btn{
+
+ background-color:#006ED4;
+
+ color: #ffffff;
+
+}
+
+/*@media (min-width: 768px) {
+
+  
+
+}*/
+
+
+
+@media (max-width: 876px) { 
+
+  .menu-nav > .navbar-menu{
+
+    display: flex;
+
+    justify-content: space-between;   
+
+    
+
+ }
+
+
+
+  .has-search, .btn-search{ 
+
+    display:none !important;
+
+  }
+
+}
+
+@media (max-width: 1200px) { 
+
+  .navbar-brand > img{ 
+
+    width: 125px;
+
+    height: 36px;
+
+    
+
+  }  
+
+  .has-search{
+
+    width: 200px;
+
+  }
+
+}
+
+
+
+
+
+@media (max-width: 575px) { 
+
+  .navbar-brand, .meat247-message, .feedback{
+
+    width: 90%;
+
+    margin: 20px;
+
+    
+
+  }
+
+  .product-listing{
+
+    padding-bottom: 10px;
+
+  }
+
+  
+
+  .table-1{
+
+    display:none;
+
+  }
+
+  .table-2{
+
+    display:block;
+
+    padding-top: 20px;
+
+  }
+
+  .myimg {
+
+    border: 1px solid #ddd; /* Gray border */
+
+    border-radius: 4px;  /* Rounded border */
+
+    padding: 5px; /* Some padding */
+
+    width: 10px; /* Set a small width */
+
+  }
+
+  #image img {
+
+    max-width: 50px;
+
+    height: 50px;
+
+  }
+
+ .product-img{
+
+   width: 50px;
+
+  
+
+ }
+
+
+
+ .t-wrapper-1{
+
+  padding-bottom: 20px;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+ }
+
+
+
+ .t-1{
+
+  display:flex;
+
+  flex-direction: row;
+
+ }
+
+ .prod-details > span, .price-details > span{
+
+  display:flex;
+
+  flex-direction: column !important;
+
+  line-height: 35px;
+
+ }
+
+
+
+ .return-to-shop, .track-order{
+
+   display:none;
+
+ }
+
+}
+
+
+
+@media (min-width: 360px) and (max-width: 454px) { 
+
+  
+
+  .navbar-brand > img{ 
+
+    width: 111px;
+
+    height: 24px;
+
+  }
+
+  .user-info{ 
+
+    display:none !important;
+
+  }
+
+
+
+ .user-info-mobile > a{
+
+    color: #04990B;
+
+    text-decoration: none;
+
+  }
+
+  .user-info-mobile{
+
+    background-color:#E6F5E7;
+
+    width: 30px;
+
+    height:30px;
+
+    border-radius: 50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+  }
+
+
+
+  .navbar-support{
+
+    justify-content: space-around;   
+
+      margin-left: 10px;
+
+      width: 200px;
+
+ }
+
+
+
+ 
+
+
+
+}
+
+
+
+
+
+@media (max-width: 360px){
+
+  .navbar-brand > img{ 
+
+    width: 111px;
+
+    height: 24px;
+
+  }
+
+}
+
+/*shopping-cart-color{
+
+    text-align: center;
+
+    font-family: Montserrat;
+
+    font-size: 10px;
+
+    font-style: normal;
+
+    font-weight: 500;
+
+    line-height: 10px; 
+
+}*/
