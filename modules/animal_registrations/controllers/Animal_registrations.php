@@ -20,17 +20,17 @@ class Animal_registrations extends Trongate {
 
         $sql = "SELECT COUNT(*) as total_animals FROM animal_registrations  WHERE status IS NULL";
         $total_animals = $this->model->query($sql, 'object');
-        $sql = "SELECT COUNT(*) as total_cow FROM animal_registrations  WHERE status IS NULL AND type_of_animal ='cow'";
+        $sql = "SELECT COUNT(*) as total_cow FROM animal_registrations  WHERE status IS NULL AND livestock_type ='cow'";
         $total_cow= $this->model->query($sql, 'object');
-        $sql = "SELECT COUNT(*) as total_goat FROM animal_registrations  WHERE status IS NULL AND type_of_animal ='goat'";
+        $sql = "SELECT COUNT(*) as total_goat FROM animal_registrations  WHERE status IS NULL AND livestock_type  ='goat'";
         $total_goat= $this->model->query($sql, 'object');
 
-        $sql = "SELECT COUNT(*) as total_ram FROM animal_registrations  WHERE status IS NULL AND type_of_animal ='ram'";
+        $sql = "SELECT COUNT(*) as total_ram FROM animal_registrations  WHERE status IS NULL AND livestock_type  ='ram'";
         $total_ram= $this->model->query($sql, 'object');
         
        
         $data = [
-            'user_data' => $this->_get_user_data($this->trongate_security->_make_sure_allowed('member area')),
+           // 'user_data' => $this->_get_user_data($this->trongate_security->_make_sure_allowed('member area')),
             'animal_registration_list' =>  $animal_registrations,
             'title' => 'Dashboard',
             'total_animals' => $total_animals[0]->total_animals,
@@ -62,14 +62,14 @@ class Animal_registrations extends Trongate {
         $this->template('admin_nldpi', $data);
     }
 
-    function add_animal_registration(): void{
+    function add_animal_record(): void{
         
         $this->module('trongate_security');
-        $this->trongate_security->_make_sure_allowed('member area');
+       // $this->trongate_security->_make_sure_allowed('member area');
         $submit = post('submit', true);
        
         if ($submit === 'Submit') {
-
+/* 
            $this->validation->set_rules('nldpi_number', 'nldpi number', 'required|min_length[2]|max_length[255]');
             $this->validation->set_rules('id_number', 'id number', 'required|min_length[2]|max_length[255]');
             $this->validation->set_rules('breed', 'breed', 'required|min_length[2]|max_length[255]');
@@ -80,37 +80,37 @@ class Animal_registrations extends Trongate {
             $this->validation->set_rules('type_of_animal', 'type of animal', 'required|min_length[2]|max_length[255]');
             $this->validation->set_rules('reg_point', 'reg point', 'required|min_length[2]|max_length[255]');
             $this->validation->set_rules('reg_by', 'reg by', 'required|min_length[2]|max_length[255]');
-            $result = $this->validation->run();
-            if ($result === true ) { 
+            $result = $this->validation->run(); */
+            //if ($result === true ) { 
                 $data = $this->_get_data_from_animal_registration();
                 $data['reg_date'] = date("Y-m-d H:i:s");
-                $data['vet_professional_id'] = $_SESSION['user_id'];
+                //$data['vet_professional_id'] = $_SESSION['user_id'];
                
                 //insert the new record
     
           
-                $res = $this->model->get_one_where('id_number',$data['id_number'],'animal_registrations');
-                if($res == false){
+                //$res = $this->model->get_one_where('id',$data['id_number'],'animal_registrations');
+                //if($res == false){
                     $this->model->insert($data, 'animal_registrations');
     
                     $_SESSION['success'] = 'You have successfully register a new animal';
                 
-                }else{
+            /*     }else{
                     $_SESSION['failure'] = 'There is another animal having this identification number, in our record';
     
-                } 
-                redirect('animal_registrations');
+                }  */
+                redirect('service_providers/register_new_animal');
                 
-           }else{
+          /*  }else{
 
-            redirect('animal_registrations/register_animal');
+            redirect('service_providers/register_new_animal');
             
-           }
+           } */
 
 
         } else {
             //form submission error
-             redirect('animal_registrations/register_animal');
+             redirect('service_providers/register_new_animal');
         }
 
 
@@ -119,15 +119,16 @@ class Animal_registrations extends Trongate {
 
     function _get_data_from_animal_registration(): array {
         $data['nldpi_number'] = post('nldpi_number', true);
-        $data['id_number'] = post('id_number', true);
+        //$data['id'] = post('id_number', true);
         $data['breed'] = post('breed', true);
         $data['sex'] = post('sex', true);
         $data['weight'] = post('weight', true);
         $data['approx_age'] = post('approx_age', true);
         $data['colour'] = post('colour', true);
-        $data['type_of_animal'] = post('type_of_animal', true);
+        $data['livestock_type'] = post('livestock_type', true);
         $data['reg_point'] = post('reg_point', true);
-        $data['reg_by'] = post('reg_by', true);        
+        $data['animal_id'] = post('animal_id', true);  
+        $data['owner_id'] = post('owner_id', true);       
         return $data;
     }
 

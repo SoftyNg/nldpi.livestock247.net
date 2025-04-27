@@ -87,6 +87,41 @@ class Number_bank extends Trongate {
     redirect('service_providers/number_bank_request_success');
        }
 
+          
+       public function assigned_number_bank(){
+        $assigned = post('assigned_qty', true);
+        $quantity = post('qty', true);
+   
+
+        if($quantity >= $assigned){
+        // Retrieve form data
+$data['nldpi_number'] = post('nldpi_number', true);  
+$data['assigned'] = $assigned;
+$data['qty'] = $quantity - $assigned;  
+$data['type_of_tag'] = post('type_of_tag', true); 
+$data['assigned_from'] = post('assigned_from', true); 
+$data['assigned_to'] = post('assigned_to', true); 
+$data['prof_assigned_to'] = post('prof_assigned_to', true); 
+$data['request_date'] = time();
+
+$id = post('assigned', true);
+$_SESSION['qty_allocated'] = post('qty', true);
+$_SESSION['vet_prof'] = post('prof_assigned_to', true);  
+
+
+// Update the data into the database
+$this->model->update($id, $data, 'number_bank_request_allocation');
+
+
+// Redirect to reload the page and show modal
+redirect('service_providers/number_bank_allocate_success');
+
+        }else{
+            echo 'You do not have that much';
+        }
+   }
+
+
 
 
        public function _get_pending_requests(){ 
@@ -279,7 +314,46 @@ function _countNumberBank($nldpinumber) {
 }
 
 
+public function get_number_availability() {
+    $id = (int)($_GET['assigned'] ?? 0);
+    $params = ['id' => $id];
 
+    $sql = "SELECT qty, type_of_tag FROM number_bank_request_allocation WHERE id = :id";
+
+    $row = $this->model->query_bind($sql, $params,'array');
+       
+    if ($row) {
+        $available = (int)($row[0]['qty'] ?? 0);
+        $tag = $row[0]['type_of_tag'];
+
+    // Return 2 targets (availability and hidden input)
+    echo '
+    <span id="availability-placeholder">' . number_format($available) . ' Available</span>
+    <input type="hidden" id="type-of-tag" name="type_of_tag" value="' . htmlspecialchars($tag) . '" />
+    <input type="hidden" id="qty" name="qty" value=" '.  $available  . '" />
+';
+} else {
+echo '
+    <span id="availability-placeholder">N/A</span>
+    <input type="hidden" id="type-of-tag" name="type_of_tag" value="" />
+';
+}
+
+}
+
+public function total_allocated_ids(){
+
+    $sql = "SELECT SUM(assigned) as total_allocated FROM number_bank_request_allocation";
+    $row = $this->model->query($sql, 'array');
+   
+
+    if ($row && isset($row[0]['total_allocated'])) {
+        return (int)$row[0]['total_allocated'];
+    }
+
+    return 0; // Return 0 if no result
+
+}
    
 
 

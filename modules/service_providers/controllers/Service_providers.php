@@ -420,6 +420,55 @@ class Service_providers extends Trongate {
     }
 
 
+    function number_bank_allocate_success(){
+        $data['view_module'] = 'Service_providers';
+        $data['view_file'] = '_number_bank_allocate_success';
+        $data['title'] = 'Number bank Allocate';            
+        $this->template($this->template_admin, $data);
+
+    }
+
+
+
+    function _get_number_list($nldpiNumber) {
+        $params['nldpi_number'] = $nldpiNumber;
+            $sql = 'SELECT * FROM number_bank_request_allocation WHERE 
+            status="Approved" AND nldpi_number = :nldpi_number';            
+            $rows = $this->model->query_bind($sql, $params, 'object');
+       
+        foreach ($rows as $row) {
+            $options[0] = 'none selected';
+            $options[$row->id] = $row->id;
+        }
+        return $options;
+    }
+
+
+    function _get_breed_list() {
+        $params['status'] = 1;
+            $sql = 'SELECT * FROM breed_registrations WHERE status= :status';            
+            $rows = $this->model->query_bind($sql, $params, 'object');
+       
+        foreach ($rows as $row) {
+            $options[0] = 'none selected';
+            $options[$row->name] = $row->name;
+        }
+        return $options;
+    }
+
+    function _get_vet_professional_list() {
+        $params['status'] = 1;
+            $sql = 'SELECT * FROM veterinary_professionals WHERE status= :status';            
+            $rows = $this->model->query_bind($sql, $params, 'object');
+       
+        foreach ($rows as $row) {
+            $options[0] = 'none selected';
+            $options[$row->nldpi_number] = $row->nldpi_number;
+        }
+        return $options;
+    }
+
+
 
 
 
@@ -534,6 +583,7 @@ function load_form_data() {
 
             $rows = $this->model->query_bind('SELECT * FROM account WHERE 
             email = :email', $params, 'object');
+
 
             if (!empty($rows)) {
                 $this->setFlashAndRedirect('This email has already been used to create an account, try login in or create a new account',
@@ -815,16 +865,7 @@ WHERE a.email = :email;';
 }
 
     
-        // public function dashboard(){
-                 
-        //    $data['user_data'] = $_SESSION['user_data'];
-        
-        //     $data['view_module'] = 'Serviceprovidersregisters';
-        //     $data['view_file'] = '_dashboard';
-        //     $data['title'] = 'Dashboard';
-        //     $this->template('admin_nldpi', $data);
-    
-        // }
+
 
     
         public function number_bank_request(){
@@ -875,9 +916,6 @@ WHERE a.email = :email;';
         redirect('user_auth/login');
     }
 
-    public function countNumberBank($nldpinumber){
-
-    }
 
 
 

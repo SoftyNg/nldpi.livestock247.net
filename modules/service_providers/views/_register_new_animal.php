@@ -14,7 +14,7 @@
 
             
 
-            echo form_open('breed_registrations/add_breed');
+            echo form_open('animal_registrations/add_animal_record');
 
         ?>
 
@@ -26,8 +26,8 @@
 
                             <label>Identification Number (from allocated Number Bank)</label>
 
-                            <input type="number" class="form-control" id="" 
-                            name="number" placeholder="Livestock Identification Number">
+                            <input type="" class="form-control" id="" 
+                            name="animal_id" placeholder="Livestock Identification Number">
 
 
                             <?php  echo (!empty(validation_errors('name')) ? validation_errors('name') : ''); ?>
@@ -42,7 +42,7 @@
 
                             <label>Species </label>
 
-                            <select name="type_of_animal" class="form-control">
+                            <select name="livestock_type" class="form-control">
 
                                 <option value=""> Select</option>
 
@@ -70,15 +70,17 @@
 
                             <label>Breed Type</label>
 
-                            <select name="breed_type" class="form-control">
+                            <?php
+$breed_list = Modules::run('service_providers/_get_breed_list');
 
-                                <option value=""> Select breed type</option>
+$attr['id'] = 'breed_type';
+$attr['class'] = 'form-control';
+$attr['required'] = 1;
 
-                                <option value="local"> Local </option>
+$none['None selected'] = ' ';
 
-                                <option value="exotic">Exotic</option>
-
-                            </select>
+echo form_dropdown('breed', $breed_list, '', $attr);
+?> 
 
                             <?php  echo (!empty(validation_errors('breed_type')) ? validation_errors('breed_type') : ''); ?>
 
@@ -92,13 +94,13 @@
 
                         <label>Sex </label>
 
-<select name="type_of_animal" class="form-control">
+<select name="sex" class="form-control">
 
     <option value=""> Select</option>
 
-    <option value="goat"> Goat </option>
+    <option value="Male"> Male </option>
 
-    <option  value="ram">Ram</option>
+    <option  value="Female"> Female</option>
 
 
 </select>
@@ -124,17 +126,19 @@
                            
                         <label>Age(Months)</label>
 
-<select name="breed_type" class="form-control">
+<select name="approx_age" class="form-control">
 
     <option value=""> Select range</option>
 
-    <option value="local"> Local </option>
+    <option value="0 - 2 months"> 0 - 2 months </option>
 
-    <option value="exotic">Exotic</option>
+    <option value="3 - 5 months"> 3 - 5 months</option>
+
+    <option value="6 - 8 months"> 6 - 8 months</option>
 
 </select>
 
-<?php  echo (!empty(validation_errors('breed_type')) ? validation_errors('breed_type') : ''); ?>
+<?php  echo (!empty(validation_errors('age')) ? validation_errors('age') : ''); ?>
 
                         </div>
 
@@ -149,17 +153,19 @@
                            
                         <label>Weight Range (Kb/lsb)</label>
 
-<select name="breed_type" class="form-control">
+<select name="weight" class="form-control">
 
     <option value=""> Select range</option>
 
-    <option value="local"> Local </option>
+    <option value="0 - 3 lsb "> 0 -3 lsb </option>
 
-    <option value="exotic">Exotic</option>
+    <option value="3 - 5 lsb"> 3 - 5 lsb</option>
+
+    <option value="6 - 8 lsb"> 6 - 8 lsb</option>
 
 </select>
 
-<?php  echo (!empty(validation_errors('breed_type')) ? validation_errors('breed_type') : ''); ?>
+<?php  echo (!empty(validation_errors('weight')) ? validation_errors('weight') : ''); ?>
 
                         </div>
 
@@ -179,17 +185,17 @@
                            
                         <label>Location</label>
 
-<select name="breed_type" class="form-control">
+<select name="reg_point" class="form-control">
 
     <option value=""> Market/Farm</option>
 
-    <option value="local"> Local </option>
+    <option value="Market"> Market </option>
 
-    <option value="exotic">Exotic</option>
+    <option value="Farm">Farm</option>
 
 </select>
 
-<?php  echo (!empty(validation_errors('breed_type')) ? validation_errors('breed_type') : ''); ?>
+<?php  echo (!empty(validation_errors('location')) ? validation_errors('location') : ''); ?>
 
                         </div>
 
@@ -207,7 +213,7 @@
                         name="owner_id" placeholder="Owner NLDPI ID">
 
 
-<?php  echo (!empty(validation_errors('breed_type')) ? validation_errors('breed_type') : ''); ?>
+<?php  echo (!empty(validation_errors('owner_id')) ? validation_errors('owner_id') : ''); ?>
 
                         </div>
 

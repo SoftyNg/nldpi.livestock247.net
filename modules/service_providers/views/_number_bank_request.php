@@ -148,8 +148,11 @@
                 <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                            Allocated ID's</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800">0</div>
+                            Total Allocated IDs</div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800">
+                        <?= Modules::run('number_bank/total_allocated_ids');?>
+                       
+                        </div>
                     </div>
                     <div class="col-auto">
                     <i class="fas fa-ellipsis-v fa-2x text-gray-300"></i>
@@ -194,7 +197,10 @@
                                     <?php if (count($number_bank_data) > 0) { ?>
                                     <?php foreach ($number_bank_data as $numberBank)  {
    $type_of_tag = $numberBank->type_of_tag;
-   $range = $numberBank->qty; 
+   $from = $numberBank->number_from; 
+   $to = $numberBank->number_to; 
+   $used = $numberBank->used;
+   $qty = $numberBank->qty;
    $bank_id = $numberBank->id;
    $reg_date = date('Y-m-d', $numberBank->request_date);
    $allocation_date = date('Y-m-d', $numberBank->allocation_date);
@@ -203,16 +209,18 @@
                                     <tr>  <!-- Added missing <tr> tag -->
             <td><?php echo $bank_id; ?></td>
             <td><?php echo $type_of_tag; ?></td>
-            <td><?php echo $range; ?></td>
-            <td><?php echo $range; ?></td>
+            <td><?php echo $from .'-'.$to; ?></td>
+            <td><?php echo $qty - $used; ?></td>
             <td><?php echo $reg_date; ?></td>
             <td><?php echo $allocation_date; ?></td>
             <td><?php if ($status == "Pending"): ?>
                 <div class="pending-label">Pending</div>
-<?php elseif ($status == "Active"): ?>
+<?php elseif ($status == "Approved"): ?>
     <div class="label">Active</div>
     <?php elseif ($status == "Reject"): ?>
     <div class="reject-label">Reject</div>
+    <?php elseif ($status == "Pending"): ?>
+        <div class="reject-label">Pending</div>
 <?php endif; ?>
 </td>
         </tr>
@@ -328,7 +336,7 @@
 
                     <!-- Modal Body -->
                     <div class="modal-body">
-                    <?= form_open('number_bank/number_bank_request_submit') ?>
+                    <?= form_open('number_bank/assigned_number_bank') ?>
                           <!-- Dropdown 1: Select User Role -->
                           <div class="form-group">
                           <input type="hidden" id="" name="nldpi_number" 
@@ -337,27 +345,62 @@
 
                           <div class="form-group">
                             <label for="user_role">Select Number Bank</label>
-                            <select name="qty" id="user_role" class="form-control">
-                                <option value="10000 - 100000">10000 - 100000</option>
-                                <option value="100001-500000">100001-500000</option>
-                               
-                            </select>
+   
+                            <?php
+$number_bank_list = Modules::run('service_providers/_get_number_list', $nldpiNumber);
+
+$attr['id'] = 'number-bank-select';
+$attr['class'] = 'form-control';
+$attr['required'] = 1;
+$attr['hx-get'] = BASE_URL.'number_bank/get_number_availability';
+$attr['hx-trigger'] = 'change';
+$attr['hx-target'] = '#availability-wrapper'; // Update the wrapper
+$attr['hx-include'] = '[name="assigned"]'; 
+$none['None selected'] = ' ';
+
+echo form_dropdown('assigned', $number_bank_list, '', $attr);
+?>                           
                             <span>Select a number bank from your assigned number bank ID</span>
                         </div>
                           <div class="form-group">
                             <label for="user_role">Quantity</label>
-                            <input type="text" id="" name="qty" 
+                            <input type="text" id="" name="assigned_qty" 
                             value=" " class="form-control"/>
-                            <span>10,000 Available</span>
+                             <!-- Wrapper to be updated by HTMX -->
+    <div id="availability-wrapper">
+        <span id="availability-placeholder"></span>
+        <input type="hidden" id="type-of-tag" name="type_of_tag" value="" />
+    </div>
+
+                        </div>
+                        <div class="form-group">
+                        <div class="row">
+    
+    <div class="col-md-6">
+      <label for="from">From</label>
+      <input type="text" id="from" name="assigned_from" value="" class="form-control" />
+    </div>
+
+    <div class="col-md-6">
+      <label for="to">To</label>
+      <input type="text" id="to" name="assigned_to" value="" class="form-control" />
+    </div>
+
+  </div>
+
                         </div>
 
                         <!-- Dropdown 2: Select Country -->
                         <div class="form-group">
                             <label for="country">Professional Id Number</label>
-                            <select name="type_of_tag" id="" class="form-control">
-                                <option value="Micro chip">Mvj</option>
-                                <option value="Tags">Tags</option>                                
-                            </select>
+                            <?php $vet_pro_list = Modules::run('service_providers/_get_vet_professional_list'); 
+                            
+                            $selected_attr['id'] = '';
+                            $selected_attr['class'] = 'form-control';
+                            $selected_attr['required'] = 1;
+                            echo form_dropdown('prof_assigned_to', $vet_pro_list, '', $selected_attr);
+                            ?>
+                          
                         </div>
                                     
                     </div>
@@ -365,7 +408,7 @@
                     <!-- Modal Footer -->
                     <div class="modal-footer d-flex justify-content-between">
     <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
-    <button type="submit" class="btn btn-success">Submit Request</button>
+    <button type="submit" class="btn btn-success">Allocate</button>
 </div>
 <?= form_close() ?> 
 
