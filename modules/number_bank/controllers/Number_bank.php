@@ -4,6 +4,11 @@
 
 class Number_bank extends Trongate {
 
+    private $default_limit = 20;
+    private $per_page_options = array(10, 20, 50, 100);    
+    private $template_admin = 'admin';
+    private $template_public = 'public';
+
 
 
     public function index(): void {
@@ -13,6 +18,11 @@ class Number_bank extends Trongate {
 	}
 
 	public function dashboard(): void {
+
+        $this->module('trongate_security');
+		
+        $token = $this->trongate_security->_make_sure_allowed('admin');
+        
 
 		$data['title'] = 'Dashboard';
 
