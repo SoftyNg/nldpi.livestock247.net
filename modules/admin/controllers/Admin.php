@@ -11,6 +11,8 @@ class Admin extends Trongate {
 	}
 
 	public function dashboard(): void {
+		$this->module('trongate_security');
+        $token = $this->trongate_security->_make_sure_allowed('admin');
 
 		$data['title'] = 'Dashboard';
 
@@ -857,6 +859,23 @@ class Admin extends Trongate {
 		return $record;
 
 	}
+
+
+	 // Access control for the Admin
+function _make_sure_allowed() {
+
+    $this->module('trongate_tokens');
+
+    $token = $this->trongate_tokens->_attempt_get_valid_token();
+ 
+    if (!$token) {
+
+        redirect('users/login');
+
+    }
+	
+    return $token;
+  }
 
 
 

@@ -16,6 +16,10 @@ class Trongate_security extends Trongate {
             //     $this->module('members');
             //     $token = $this->members->_make_sure_allowed();
             //     break;
+            case 'admin':
+                $this->module('admin');
+                $token = $this->admin->_make_sure_allowed();
+                break;
             case 'service providers':
                 $this->module('service_providers');
                 $token = $this->service_providers->_make_sure_allowed();

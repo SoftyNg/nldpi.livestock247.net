@@ -3,8 +3,7 @@
 <div class="container-fluid" style="background-color:#F5FCF9;">
 <?php $email = $_SESSION['email'];
     $user_data =  Modules::run('service_providers/_fetch_all_data_for_user', $email); 
-    ?>
-<?php foreach ($user_data as $user) :
+   foreach ($user_data as $user) :
    $name = $user->company_name;
    $nldpiNumber = $user->nldpi_number;      
  endforeach; ?>
