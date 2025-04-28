@@ -852,7 +852,14 @@ function _make_sure_allowed() {
     //     return $data;
     // }   
 
+public function register_new_animal_success(){
+    $data['view_module'] = 'Service_providers';
+    $data['view_file'] = '_animal_reg_success';
+    $data['title'] = 'Number bank request';            
+    $this->template($this->template_admin, $data);
 
+
+}
 
   public function _fetch_all_data_for_user($email) {	
     $params['email'] = $email;

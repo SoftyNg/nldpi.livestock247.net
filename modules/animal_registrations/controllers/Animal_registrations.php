@@ -99,7 +99,8 @@ class Animal_registrations extends Trongate {
                     $_SESSION['failure'] = 'There is another animal having this identification number, in our record';
     
                 }  */
-                redirect('service_providers/register_new_animal');
+                  $_SESSION['animal_reg_number'] = $data['animal_id'];
+                redirect('service_providers/register_new_animal_success');
                 
           /*  }else{
 

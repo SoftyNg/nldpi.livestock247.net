@@ -1,6 +1,12 @@
 <!-- Begin Page Content -->
 
 <div class="container-fluid">
+<?php $email = $_SESSION['email'];
+    $user_data =  Modules::run('service_providers/_fetch_all_data_for_user', $email); 
+   foreach ($user_data as $user) :
+   $name = $user->company_name;
+   $nldpiNumber = $user->nldpi_number;      
+ endforeach; ?>
 
         <div class="animal-form-name mb-5 mt-5">
 
@@ -42,7 +48,7 @@
 
                             <label>Species </label>
 
-                            <select name="livestock_type" class="form-control">
+                            <select name="livestock_type" class="form-control" required>
 
                                 <option value=""> Select</option>
 
@@ -94,7 +100,7 @@ echo form_dropdown('breed', $breed_list, '', $attr);
 
                         <label>Sex </label>
 
-<select name="sex" class="form-control">
+<select name="sex" class="form-control" required>
 
     <option value=""> Select</option>
 
@@ -126,7 +132,7 @@ echo form_dropdown('breed', $breed_list, '', $attr);
                            
                         <label>Age(Months)</label>
 
-<select name="approx_age" class="form-control">
+<select name="approx_age" class="form-control" required>
 
     <option value=""> Select range</option>
 
@@ -153,7 +159,7 @@ echo form_dropdown('breed', $breed_list, '', $attr);
                            
                         <label>Weight Range (Kb/lsb)</label>
 
-<select name="weight" class="form-control">
+<select name="weight" class="form-control" required>
 
     <option value=""> Select range</option>
 
@@ -185,7 +191,7 @@ echo form_dropdown('breed', $breed_list, '', $attr);
                            
                         <label>Location</label>
 
-<select name="reg_point" class="form-control">
+<select name="reg_point" class="form-control" required>
 
     <option value=""> Market/Farm</option>
 
@@ -210,7 +216,9 @@ echo form_dropdown('breed', $breed_list, '', $attr);
                            
                         <label>Owner Id</label>
                         <input type="" class="form-control" id="typeInput" 
-                        name="owner_id" placeholder="Owner NLDPI ID">
+                        name="owner_id" placeholder="Owner NLDPI ID" required>
+                        <input type="hidden" class="form-control" id="typeInput" 
+                        name="nldpi_number" value="<?= $nldpiNumber; ?>" placeholder="Owner NLDPI ID" >
 
 
 <?php  echo (!empty(validation_errors('owner_id')) ? validation_errors('owner_id') : ''); ?>
