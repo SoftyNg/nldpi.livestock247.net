@@ -171,7 +171,8 @@
     <!-- Bootstrap core JavaScript-->
 
   
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    
     <script src="<?= THEME_DIR?>vendor/jquery/jquery.min.js"></script>
 
     <script src="<?= THEME_DIR?>vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

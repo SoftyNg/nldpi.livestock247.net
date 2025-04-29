@@ -14,9 +14,13 @@
 
 $link = BASE_URL . segment(1) . '/dashboard';
 
-if (segment(1) === 'admin' || segment(1) === 'breed_registrations' ||'number_bank') {
+if (segment(1) == 'admin' || segment(1) == 'breed_registrations' ||segment(1) == 'number_bank') {
 
     $link = BASE_URL . 'admin/dashboard';
+
+}else if (segment(1) == 'service_providers' ) {
+
+    $link = BASE_URL . 'service_providers/dashboard';
 
 }
 

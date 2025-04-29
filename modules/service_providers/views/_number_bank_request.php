@@ -110,7 +110,8 @@
 </div>
 <div>
 
-<button class="btn btn-outline-dark mr-2" data-toggle="modal" data-target="#allocateModal">Allocate Id Number</button>
+<button class="btn btn-outline-dark mr-2" data-toggle="modal" data-target="#allocateModal"
+>Allocate Id Number</button>
 <button class="btn btn-success" data-toggle="modal" data-target="#myModal">
     Request Number Bank</button>
 </div>

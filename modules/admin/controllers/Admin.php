@@ -11,7 +11,9 @@ class Admin extends Trongate {
 	}
 
 	public function dashboard(): void {
+
 		$this->module('trongate_security');
+		
         $token = $this->trongate_security->_make_sure_allowed('admin');
 
 		$data['title'] = 'Dashboard';
@@ -371,6 +373,21 @@ class Admin extends Trongate {
         ];
 
 	}
+
+    public function count_service_providers(){
+
+		echo $this->model->count_rows('status', 1, 'service_providers');
+
+	}
+
+	
+    public function count_animals(){
+
+		echo $this->model->count_rows('status', 0, 'animal_registrations');
+
+	}
+
+
 
 	private function registration_types_count(): array {
 
