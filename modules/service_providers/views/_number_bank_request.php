@@ -5,7 +5,8 @@
 <?php foreach ($user_data as $user) :
    $name = $user->company_name;
    $nldpiNumber = $user->nldpi_number;      
- endforeach; ?>
+ endforeach; 
+ ?>
 
 
     <!-- Begin Page Content -->
@@ -182,7 +183,8 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-    <?php $number_bank_data =  Modules::run('number_bank/fetch_all_number_bank_request', $nldpiNumber); ?>
+    <?php $number_bank_data =  
+    Modules::run('number_bank/fetch_all_number_bank_request', $nldpiNumber); ?>
 
                                         <tr>
                                             <th>Bank Id</th>
@@ -207,7 +209,7 @@
    $allocation_date = date('Y-m-d', $numberBank->allocation_date);
    $status =  $numberBank->status;
    ?>
-                                    <tr>  <!-- Added missing <tr> tag -->
+                                    <tr>  
             <td><?php echo $bank_id; ?></td>
             <td><?php echo $type_of_tag; ?></td>
             <td><?php echo $from .'-'.$to; ?></td>
@@ -226,18 +228,16 @@
 </td>
         </tr>
         <?php }  ?>
-    <?php } else { ?>
-    <tr>
-        <td colspan="5">There is no entry yet</td>  <!-- colspan added to align message properly -->
-    </tr>
-<?php } ?>
+    <?php } else { 
+    echo '<tr>  There is no entry yet    </tr>';
+   } ?>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
 </div>
-</div>
+
 
 <!-- Button to Trigger Modal -->
 
@@ -290,26 +290,10 @@
                     <div class="modal-footer d-flex justify-content-between">
     <button type="button" class="btn btn-outline-dark" data-dismiss="modal">Close</button>
     <button type="submit" class="btn btn-success">Submit Request</button>
+    <?= form_close() ?> 
 </div>
-<?= form_close() ?> 
 
-        <!-- Success Modal -->
-        <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="modalLabel">Submission Successful</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        Your request has been successfully submitted!
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 
                 </div>
@@ -318,12 +302,12 @@
 
 
 
-
-
+<?php if (count($number_bank_data)!== 0): ?>
 
         
  <!-- The Modal -->
- <div class="modal fade" id="allocateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+ <div class="modal fade" id="allocateModal" tabindex="-1" role="dialog" 
+ aria-labelledby="myModalLabel" aria-hidden="true">
  <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <!-- Modal Header -->
@@ -436,7 +420,5 @@ echo form_dropdown('assigned', $number_bank_list, '', $attr);
             </div>
         </div>
  
- 
-
-
+        <?php endif; ?>
 
