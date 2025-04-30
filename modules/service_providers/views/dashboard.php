@@ -35,7 +35,7 @@
 
                     <div class="no-gutters align-items-center">
 
-                        <a class="nav-link" href="<?= BASE_URL."number_banks" ?>">
+                        <a class="nav-link" href="<?= BASE_URL."service_providers/number_banks" ?>">
 
                             <div class="animal-registered-container">
 
@@ -121,7 +121,7 @@
 
     <div class="text-and-action-parent">
 
-        <a class="text-and-action nav-link" href="<?= BASE_URL."number_banks" ?>">
+        <a class="text-and-action nav-link" href="<?= BASE_URL."service_providers/number_banks" ?>">
 
             <img class="text-and-action-child" alt="" src="<?= THEME_DIR?>img/number.svg">
 
@@ -129,7 +129,10 @@
 
             <div class="company-and-quote">
 
-                    <div class="company">Request Number Bank</div>
+             <div class="company">
+                    Request Number Bank
+                </div>
+
 
                     <div class="quote">Request a number bank for ID and tracking devices</div>
 
@@ -137,7 +140,7 @@
 
         </a>    
 
-        <a class="text-and-action nav-link" href="<?= BASE_URL."number_banks" ?>">
+        <a class="text-and-action nav-link" href="<?= BASE_URL."service_providers/number_banks" ?>">
 
             <img class="text-and-action-child" alt="" src="<?= THEME_DIR?>img/network.svg">
 
@@ -153,7 +156,7 @@
 
         </a>
 
-        <a class="text-and-action nav-link" href="<?= BASE_URL."animal_registrations" ?>">
+        <a class="text-and-action nav-link" href="<?= BASE_URL."service_providers/livestock_registry" ?>">
 
             <img class="text-and-action-child" alt="" src="<?= THEME_DIR?>img/note.svg">
 
