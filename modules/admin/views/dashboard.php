@@ -144,48 +144,26 @@
 <div class="card shadow col-xl-8 col-lg-7">
 
                         <div class="card-header py-3">
-                            <h5 class="m-0 font-weight-bold text-black">Registrations</h5>
-                            <h6 class="m-0 font-weight-light text-grey">Keep track of Your allocated number banks</h6>
+                            <h5 class="m-0 font-weight-bold text-black">Service Providers Distribution</h5>
                         </div>
                         <div class="card-body">
-
-                        
-    <?php $number_bank_data =  Modules::run('number_bank/fetch_all_number_bank_request', $number); ?>
-
-                                   
-                                    <?php if (count($number_bank_data) > 0) { ?>
-                                    <?php foreach ($number_bank_data as $numberBank)  {
-   $type_of_tag = $numberBank->type_of_tag;
-   $range = $numberBank->qty; 
-   $bank_id = $numberBank->id;
-   $reg_date = date('Y-m-d', $numberBank->request_date);
-   $allocation_date = date('Y-m-d', $numberBank->allocation_date);
-   $status =  $numberBank->status;
-  }  } else { } ?>
-                                  <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                        <canvas id="myChart" style="width:100%;"></canvas>
+                                 
                             </div>
                         </div>
-                    </div>
-
-
-                    
+                    </div>       
 </div>
 
-
-
-
-</div>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 <script>
-var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+var xValues = ["Livestock Identity Providers", "Vetrinary Professionals", "Transporters", "Extention Workers", "Others"];
 var yValues = [55, 49, 44, 24, 15];
 var barColors = [
-  "#b91d47",
-  "#00aba9",
-  "#2b5797",
-  "#e8c3b9",
-  "#1e7145"
+  "#079455",
+  "#17B26A",
+  "#47CD89",
+  "#75E0A7",
+  "#EAECF0"
 ];
 
 new Chart("myChart", {
@@ -200,305 +178,9 @@ new Chart("myChart", {
   options: {
     title: {
       display: true,
-      text: "World Wide Wine Production 2018"
+      text: ""
     }
   }
 });
 </script>
-
-
-
-<style>
-
-    a {
-
-        color: #16192c;
-
-        text-decoration: none;
-
-        background-color: transparent;
-
-    }
-
-    a:hover {
-
-        color: green;
-
-    }
-
-    .company {
-
-        align-self: stretch;
-
-        position: relative;
-
-        line-height: 120%;
-
-        font-weight: 600;
-
-    }
-
-
-
-    .company1 {
-
-        position: relative;
-
-        line-height: 130%;
-
-    }
-
-
-
-    .text {
-
-        position: relative;
-
-        line-height: 18px;
-
-        font-weight: 500;
-
-    }
-
-
-
-    .badge {
-
-        border-radius: 16px;
-
-        background-color: #f5fffa;
-
-        border: 1px solid #d6ffea;
-
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: center;
-
-        justify-content: flex-start;
-
-        padding: 2px 8px;
-
-        mix-blend-mode: multiply;
-
-        text-align: center;
-
-        font-size: 12px;
-
-        color: #00ad56;
-
-    }
-
-
-
-    .company-group {
-
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: flex-start;
-
-        justify-content: flex-start;
-
-        gap: 8px;
-
-        font-size: 16px;
-
-        color: #475467;
-
-    }
-
-
-
-    .company-parent {
-
-        width: 100%;
-
-        position: relative;
-
-        border-bottom: 1px solid #eaecf0;
-
-        box-sizing: border-box;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        justify-content: center;
-
-        padding: 24px 32px;
-
-        gap: 8px;
-
-        text-align: left;
-
-        font-size: 24px;
-
-        color: #101828;
-
-        font-family: Nunito;
-
-    }
-
-
-
-    .frame-icon {
-
-        width: 100%;
-
-        position: relative;
-
-        border-radius: 114.84px;
-
-        height: 58px;
-
-        overflow: hidden;
-
-        flex-shrink: 0;
-
-    }
-
-
-
-    .text-and-action-child {
-
-        width: 58px;
-
-        position: relative;
-
-        border-radius: 114.84px;
-
-        height: 58px;
-
-        overflow: hidden;
-
-        flex-shrink: 0;
-
-    }
-
-
-
-    .company {
-
-        align-self: stretch;
-
-        position: relative;
-
-        line-height: 120%;
-
-        text-transform: capitalize;
-
-        font-weight: 600;
-
-    }
-
-
-
-    .quote {
-
-        align-self: stretch;
-
-        position: relative;
-
-        font-size: 16px;
-
-        line-height: 130%;
-
-        color: #475467;
-
-    }
-
-
-
-    .company-and-quote {
-
-        flex: 1;
-
-        display: flex;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        justify-content: flex-start;
-
-        gap: 4px;
-
-    }
-
-
-
-    .text-and-action {
-
-        flex: 1;
-
-        border-radius: 8px;
-
-        background-color: #fff;
-
-        border: 1px solid #eaecf0;
-
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: center;
-
-        justify-content: flex-start;
-
-        padding: 16px;
-
-        gap: 18px;
-
-    }
-
-
-
-    .company2 {
-
-        align-self: stretch;
-
-        position: relative;
-
-        line-height: 120%;
-
-        font-weight: 600;
-
-    }
-
-
-
-    .text-and-action-parent {
-
-        width: 100%;
-
-        position: relative;
-
-        display: flex;
-
-        flex-direction: row;
-
-        align-items: center;
-
-        justify-content: flex-start;
-
-        gap: 24px;
-
-        text-align: left;
-
-        font-size: 18px;
-
-        color: #16192c;
-
-        font-family: Nunito;
-
-    }
-
-
-
-</style>
 
