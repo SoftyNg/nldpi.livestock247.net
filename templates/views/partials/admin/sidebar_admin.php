@@ -64,7 +64,8 @@ if (segment(1) == 'admin' || segment(1) == 'breed_registrations' ||segment(1) ==
 
 
 
-<?php if (segment(1) === 'admin' || segment(1) === 'breed_registrations' || segment(1) === 'number_bank') : ?>
+<?php if (segment(1) === 'admin' || segment(1) === 'breed_registrations' || segment(1) === 'number_bank'
+          || segment(1) === 'market_registry') : ?>
 
 <?= Template::partial('partials/admin/sidebar_administrator') ?>
 

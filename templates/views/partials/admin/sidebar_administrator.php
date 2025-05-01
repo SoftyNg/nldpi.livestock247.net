@@ -64,13 +64,13 @@
 
 
 
-<li class="nav-item <?= segment(2) === 'market_registry' ? 'active' : '' ?>">
+<li class="nav-item <?= segment(1) === 'market_registry' ? 'active' : '' ?>">
 
     <a class="nav-link" href="<?= BASE_URL . 'market_registry/dashboard'?>">
 
        
 
-        <?php if (segment(2) === 'market_registry') : ?>
+        <?php if (segment(1) === 'market_registry') : ?>
 
             <img src="<?= THEME_DIR?>img/MapPinLine2.png" alt="Market Registry">
 
