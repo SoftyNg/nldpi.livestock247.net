@@ -16,7 +16,8 @@
 
         <div class="my-2 my-sm-0">
 
-            <a href="<?= BASE_URL."breed_registrations/register_breed" ?>" class="btn btn-outline-dark mr-2">Allocate ID Number</a>
+            <a href="<?= BASE_URL."breed_registrations/register_breed" ?>" 
+            class="btn btn-outline-dark mr-2">Allocate ID Number</a>
 
             <a href="<?= BASE_URL."number_banks" ?>" class="btn btn-success">Request Number Bank</a>
 

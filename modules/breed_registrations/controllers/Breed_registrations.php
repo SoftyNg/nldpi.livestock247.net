@@ -555,5 +555,15 @@ function delete_breed_registration(){
      */
 
 
+     function _get_breed_list() {
+        $params['status'] = 1;
+            $sql = 'SELECT * FROM breed_registrations WHERE status= :status';            
+            $rows = $this->model->query_bind($sql, $params, 'object');
+       
+        foreach ($rows as $row) {
+            $options[$row->name] = $row->name;
+        }
+        return $options;
+    }
 
 }

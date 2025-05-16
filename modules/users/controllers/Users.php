@@ -50,46 +50,45 @@ class Users extends Trongate {
 
     }
 
-  // Validates login credentials and redirects to the appropriate page
-function _logged_in($email) {
-	$user = $this->model->get_one_where('email', $email, 'account');
-	$user_id = $user->trongate_user_id;
-  
-	$this->module('trongate_tokens');
-	$token_data['user_id'] = $user_id;
-	$this->trongate_tokens->_generate_token($token_data);
-  
-	$user_type = $this->model->query_bind('SELECT * FROM account WHERE email = :email', 
-	['email' => $email], 'object')[0]->user_type;
-	 $_SESSION['user_type'] = $user_type;
-	 $_SESSION['email'] = $email;
-
-
-	// Define an array to map access numbers to respective pages
-$redirect_pages = [
-    1 => 'admin/dashboard',
-    2 => 'service_providers/dashboard',
-    3 => 'verterinary_service/dashboard',
-    4 => 'moderator/panel',
-    5 => 'editor/workspace',
-    6 => 'users/support',
-    7 => 'users/reports',
-    8 => 'finance/transactions',
-    9 => 'users/analytics',
-    10 => 'users/preferences',
-    11 => 'admin/tools',
-    12 => 'guest/info',
-    13 => 'users/general',
-];
-
-// Get the last visited page from session or route to the page based on access number
-$redirect_url = $_SESSION['last_page'] ?? $redirect_pages[$user_type];
-
-
-	//unset($_SESSION['last_page']);
-  
-	redirect($redirect_url);
-  }
+    function _logged_in($email) {
+        $user = $this->model->get_one_where('email', $email, 'account');
+        $user_id = $user->trongate_user_id;
+    
+        $this->module('trongate_tokens');
+        $token_data['user_id'] = $user_id;
+        $this->trongate_tokens->_generate_token($token_data);
+    
+        $user_type = $this->model->query_bind('SELECT * FROM account WHERE email = :email', 
+            ['email' => $email], 'object')[0]->user_type;
+    
+        $_SESSION['user_type'] = $user_type;
+        $_SESSION['email'] = $email;
+    
+        $redirect_pages = [
+            1 => 'admin/dashboard',
+            2 => 'service_providers/dashboard',
+            3 => 'verterinary_service/dashboard',
+            4 => 'moderator/panel',
+            5 => 'editor/workspace',
+            6 => 'users/support',
+            7 => 'users/reports',
+            8 => 'finance/transactions',
+            9 => 'users/analytics',
+            10 => 'users/preferences',
+            11 => 'admin/tools',
+            12 => 'guest/info',
+            13 => 'users/general',
+        ];
+    
+        // Determine redirect target
+        $redirect_url = isset($_SESSION['last_page']) ? $_SESSION['last_page'] : ($redirect_pages[$user_type] ?? 'dashboard');
+    
+        // Optional: Clear last_page after use
+        unset($_SESSION['last_page']);
+    
+        redirect($redirect_url);
+    }
+    
 
     function login_check($email) {
 

@@ -18,11 +18,13 @@ class Market_registry extends Trongate {
 	}
 
 	public function dashboard(): void {
+		
 
         $this->module('trongate_security');
 		
         $token = $this->trongate_security->_make_sure_allowed('admin');
-        
+
+		$_SESSION['last_page'] = 'market_registry/dashboard';        
 
 		$data['title'] = 'Dashboard';
 
@@ -33,5 +35,114 @@ class Market_registry extends Trongate {
 		$this->template('admin', $data);
 
 	}
+
+	public function createMarket(): void {
+		
+
+        $this->module('trongate_security');
+		
+        $token = $this->trongate_security->_make_sure_allowed('admin');
+
+		$_SESSION['last_page'] = 'market_registry/createMarket';        
+
+		$data['title'] = 'Register new Market';
+
+		$data['view_module'] = 'market_registry';
+
+		$data['view_file'] = 'create_market';
+
+		$data['form_location'] = BASE_URL.'market_registry/submit_market/';
+
+		$this->template('admin', $data);
+
+	}
+
+	public function submit_market(){
+		$submit = post('submit', true);
+        if ($submit) {
+
+            $this->validation->set_rules('name', 'name', 'required|min_length[2]|max_length[200]|callback_check_name');
+          
+            $result = $this->validation->run();
+            if ($result === true ) { 
+                $update_id = (int) segment(3);
+                $data = $this->get_data_from_post();
+			
+                    //insert the new record
+                  
+                     $this->model->insert($data, 'livestock_markets');
+                    $flash_msg = 'The record was successfully created';
+                
+
+                set_flashdata($flash_msg);
+                redirect('market_registry/createMarket');
+            }else{
+                $this->createMarket();
+            }
+        }
+		
+
+	}
+
+
+   private function get_data_from_post(): array {
+    $data['nldpi_number'] = $this->generateUniqueNldpiNumber();
+    $data['name'] = post('name', true);
+    $data['state'] =  post('state', true);
+    $data['lga'] = post('lga', true);
+    $data['address'] =  post('address', true);
+    $data['lon'] = post('longitude');
+    $data['lat'] = post('latitude'); 
+    $operating_days = post('operating_days'); 
+    $data['operating_days'] = implode(',', $operating_days); 
+    $livestocks = post('livestock_types');
+    $data['types_of_livestock_traded'] = implode(',', $livestocks);      
+    $major_breeds =  post('major_breeds');
+    $data['major_breeds_found'] = implode(',', $major_breeds);
+    $data['ownership_type'] = post('ownership');
+    $data['market_leader'] = post('market_leader');
+    $data['phone'] = post('phone');  
+    $data['email'] = post('email');  
+    $data['website'] = post('website');         
+    return $data;
+}
+
+
+    private function generateUniqueNldpiNumber(): int {
+    while (true) {
+        $random = rand(1000, 9999);
+        $nldpi_number = NLDPI_NUMBER + 44 + $random;
+
+        $params['nldpi_number'] = $nldpi_number;
+        $sql = "SELECT * FROM livestock_markets WHERE nldpi_number = :nldpi_number";
+        $result = $this->model->query_bind($sql,$params,'object');
+
+        if (count($result) == 0) {
+            return $nldpi_number;
+        }
+    }
+}
+
+
+   
+
+	function check_name(){
+        $name = post('name', true);
+        $update_id = (int) segment(3);
+        $params['name'] = $name;
+        $params['id'] = $update_id;
+
+        $sql='SELECT name from breed_registrations WHERE name = :name and id <> :id';
+        $res = $this->model->query_bind($sql,$params,'object');
+        if ($res) {
+            $error_msg ='This name is already registered.';
+            return $error_msg;
+        }
+        return true;
+    }
+
+     public function generateRandomFourDigitNumber() {
+    return rand(1000, 9999); // Ensures it's always a 4-digit number
+    }
 
 }

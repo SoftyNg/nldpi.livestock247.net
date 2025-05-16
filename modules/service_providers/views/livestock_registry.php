@@ -12,7 +12,8 @@
 
     <div class="base-right">
 
-    <a href="<?= BASE_URL."service_providers/register_new_animal" ?>" class="btn btn-success">Register New Livestock</a>
+    <a href="<?= BASE_URL."service_providers/register_new_animal" ?>" 
+    class="btn btn-success">Register New Livestock</a>
 
     </div>
 
@@ -231,10 +232,13 @@
                                                         <td><?= $livestock->additional_note; ?></td>
 
                                                         <td>
+<a href="" class="btn btn-outline-dark btn-sm edit-breed-registration" id="<?= $breed->id ?>"
+ data-toggle="modal" title="Edit" data-target="#<?= $breed->id ?>editBreedRegistration" >
+ <i class="fa fa-edit fa-sm"></i></a>
 
-                                                            <a href="" class="btn btn-outline-dark btn-sm edit-breed-registration" id="<?= $breed->id ?>" data-toggle="modal" title="Edit" data-target="#<?= $breed->id ?>editBreedRegistration" ><i class="fa fa-edit fa-sm"></i></a>
-
-                                                            <a href="" class="btn btn-outline-danger btn-sm delete-breed-registration" id-data="<?= $breed->id ?>" data-toggle="modal" title="Delete" data-target="#<?= $breed->id ?>deleteBreedRegistration" ><i class="fa fa-trash fa-sm"></i></a>
+<a href="" class="btn btn-outline-danger btn-sm delete-breed-registration" id-data="<?= $breed->id ?>" 
+data-toggle="modal" title="Delete" data-target="#<?= $breed->id ?>deleteBreedRegistration" >
+<i class="fa fa-trash fa-sm"></i></a>
 
                                                         </td>
 
