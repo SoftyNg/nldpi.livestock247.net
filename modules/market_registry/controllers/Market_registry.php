@@ -141,8 +141,55 @@ class Market_registry extends Trongate {
         return true;
     }
 
-     public function generateRandomFourDigitNumber() {
+    public function generateRandomFourDigitNumber() {
     return rand(1000, 9999); // Ensures it's always a 4-digit number
+    }
+
+    
+    public function get_state_data($state_name) {
+        // sanitize input
+        $state_name = urldecode($state_name);
+
+        $sql = "SELECT * FROM livestock_markets WHERE state = :state_name";
+        $params = ['state_name' => $state_name];
+        $markets = $this->model->query_bind($sql, $params, 'object');
+
+    if (!empty($markets)) {
+        echo json_encode([
+            'success' => true,
+            'state' => $state_name,
+            'data' => $markets
+        ]);
+    } else {
+        echo json_encode(['success' => false]);
+    }
+    }
+
+    public function todayMarket($today){
+   $params = [
+        'pattern2' => "{$today}s%",             // Match exact (e.g. only 'Monday')
+        'pattern1' => "$today%",            // Starts with day
+        'pattern3' => "%,$today",            // Ends with day
+        'pattern4' => "%,{$today}s%",           // In the middle
+    ];
+  
+    $sql = "
+        SELECT state 
+        FROM livestock_markets 
+        WHERE 
+            operating_days = :pattern1
+            OR operating_days LIKE :pattern2
+            OR operating_days LIKE :pattern3
+            OR operating_days LIKE :pattern4
+    ";
+
+    $results = $this->model->query_bind($sql, $params, 'array');
+    
+
+    $states = array_column($results, 'state');
+
+    return $states;    
+
     }
 
 }

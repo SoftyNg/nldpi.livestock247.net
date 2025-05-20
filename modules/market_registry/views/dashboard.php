@@ -275,9 +275,240 @@
 <text x="270" y="500" font-size="14" fill="black">Imo</text> 
 <text x="300" y="500" font-size="14" fill="black">Abia</text>
 <text x="520" y="210" font-size="14" fill="black">Gombe</text>
+
+<?php
+$states = Modules::run('market_registry/todayMarket', date('l'));
+
+foreach ($states as $state): 
+    switch ($state):
+        case 'Abia': ?>
+            <image x="120" y="200" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="120" y="220" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="130" y="240" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Adamawa': ?>
+            <image x="300" y="90" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="300" y="110" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="310" y="130" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Akwa Ibom': ?>
+            <image x="130" y="310" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="130" y="330" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="140" y="350" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Anambra': ?>
+            <image x="150" y="190" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="150" y="210" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="160" y="230" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Bauchi': ?>
+            <image x="250" y="80" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="250" y="100" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="260" y="120" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Bayelsa': ?>
+            <image x="200" y="530" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="190" y="570" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="200" y="590" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Benue': ?>
+            <image x="220" y="170" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="220" y="190" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="230" y="210" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Borno': ?>
+            <image x="340" y="60" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="340" y="80" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="350" y="100" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Cross River': ?>
+            <image x="180" y="280" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="180" y="300" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="190" y="320" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Delta': ?>
+            <image x="100" y="250" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="100" y="270" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="110" y="290" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Ebonyi': ?>
+            <image x="160" y="210" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="160" y="230" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="170" y="250" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Edo': ?>
+            <image x="90" y="220" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="90" y="240" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="100" y="260" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Ekiti': ?>
+            <image x="80" y="200" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="80" y="220" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="90" y="240" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Enugu': ?>
+            <image x="150" y="200" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="150" y="220" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="160" y="240" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Gombe': ?>
+            <image x="280" y="90" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="280" y="110" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="290" y="130" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Imo': ?>
+            <image x="130" y="230" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="130" y="250" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="140" y="270" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Jigawa': ?>
+            <image x="270" y="30" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="270" y="50" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="280" y="70" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Kaduna': ?>
+            <image x="240" y="110" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="240" y="130" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="250" y="150" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Kano': ?>
+            <image x="250" y="50" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="250" y="70" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="260" y="90" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Katsina': ?>
+            <image x="220" y="20" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="220" y="40" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="230" y="60" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Kebbi': ?>
+            <image x="70" y="100" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="70" y="120" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="80" y="140" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Kogi': ?>
+            <image x="170" y="180" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="170" y="200" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="180" y="220" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Kwara': ?>
+            <image x="100" y="160" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="100" y="180" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="110" y="200" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Lagos': ?>
+            <image x="60" y="250" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="60" y="270" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="70" y="290" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Nasarawa': ?>
+            <image x="200" y="150" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="200" y="170" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="210" y="190" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Niger': ?>
+            <image x="160" y="130" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="160" y="150" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="170" y="170" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Ogun': ?>
+            <image x="70" y="230" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="70" y="250" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="80" y="270" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Ondo': ?>
+            <image x="90" y="210" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="90" y="230" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="100" y="250" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Osun': ?>
+            <image x="85" y="190" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="85" y="210" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="95" y="230" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Oyo': ?>
+            <image x="70" y="180" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="70" y="200" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="80" y="220" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Plateau': ?>
+            <image x="230" y="120" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="230" y="140" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="240" y="160" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Rivers': ?>
+            <image x="120" y="290" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="120" y="310" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="130" y="330" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Sokoto': ?>
+            <image x="150" y="10" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="150" y="30" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="160" y="50" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Taraba': ?>
+            <image x="310" y="130" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="310" y="150" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="320" y="170" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Yobe': ?>
+            <image x="320" y="40" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="320" y="60" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="330" y="80" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        case 'Zamfara': ?>
+            <image x="180" y="60" width="25" height="25" href="<?= BASE_URL ?>images/markgreen.png" />
+            <image x="180" y="80" width="25" height="25" href="<?= BASE_URL ?>images/markred.png" />
+            <image x="190" y="100" width="25" height="25" href="<?= BASE_URL ?>images/markpurple.png" />
+            <?php break;
+
+        default:
+            // No marker for unknown states
+            break;
+    endswitch;
+endforeach;
+?>
+
+
+
 </svg>
 
-
+<div>
 
   <div id="state-info">Click on a state</div>
 
@@ -291,17 +522,54 @@
                           
                         </div>
                     
-
 <script>
   document.querySelectorAll('.nigeria-map svg path').forEach(function(state) {
-    state.addEventListener('click', function() {
+    state.addEventListener('click', function () {
       const stateName = this.getAttribute('data-state');
-      document.getElementById('state-info').textContent = 'You clicked on: ' + stateName;
-      // Optional: Redirect or load content dynamically
-      // window.location.href = `/state/${stateName.toLowerCase()}`;
+      const infoDiv = document.getElementById('state-info');
+      infoDiv.innerHTML = 'Loading data for: ' + stateName;
+
+      fetch(`<?= BASE_URL ?>market_registry/get_state_data/${encodeURIComponent(stateName)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.success) {
+            let marketRows = '';
+
+            data.data.forEach((entry, index) => {
+              marketRows += `
+                <div class="mb-3 p-2 border-bottom">
+                <h6 class="mb-0" style="color:green"> ${entry.operating_days}</h6>
+                 
+                  <p class="mb-1"><strong> ${entry.name}</strong> </p>
+                  <h6 class="mb-1"> <img src="<?= BASE_URL?>images/location.png" > ${entry.lga}</h6>
+                  
+                </div>
+              `;
+            });
+
+            infoDiv.innerHTML = `
+              <div class="card shadow" style="width:100%">
+                <div class="card-header py-3">
+                  <h5 class="m-0 font-weight-bold text-black">${stateName}</h5>
+                </div>
+                <div class="card-body">
+                  ${marketRows}
+                </div>
+              </div>
+            `;
+          } else {
+            infoDiv.innerHTML = '<p>No data found for this state.</p>';
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          infoDiv.innerHTML = '<p>Error fetching data.</p>';
+        });
     });
   });
 </script>
+
+
 
 <!-- Button to Trigger Modal -->
 
