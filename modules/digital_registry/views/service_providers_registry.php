@@ -9,9 +9,27 @@
         <!-- Content will be loaded here via AJAX -->
     </div>
 </div>
+<?php 
+  $total_pages = $total_pages ?? 1;
+  $current_page = $current_page ?? 1;
+?>
+<nav class="d-flex justify-content-center">
+  <ul class="pagination">
+    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+      <li class="page-item <?= ($i == $current_page) ? 'active' : '' ?>">
+        <a href="#" class="page-link pagination-link" data-page="<?= $i ?>"><?= $i ?></a>
+      </li>
+    <?php endfor; ?>
+  </ul>
+</nav>
+
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
+    const searchInput = document.querySelector('#search-input');
+    let debounceTimer;
+
     function loadResults(search = '', page = 1) {
         const params = new URLSearchParams({ search, page });
         fetch('<?= BASE_URL ?>digital_registry/ajax_service_providers_registry?' + params)
@@ -24,10 +42,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initial load
     loadResults();
 
-    // Search input listener
-    const searchInput = document.querySelector('#search-input');
+    // Debounced search input listener
     searchInput.addEventListener('input', function () {
-        loadResults(this.value.trim(), 1);
+        clearTimeout(debounceTimer);
+        const searchTerm = this.value.trim();
+        debounceTimer = setTimeout(() => {
+            loadResults(searchTerm, 1);
+        }, 300);
     });
 
     // Delegate pagination clicks

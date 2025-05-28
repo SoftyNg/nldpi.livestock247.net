@@ -56,36 +56,42 @@ class Digital_registry extends Trongate {
 
 function ajax_service_providers_registry() {
     $search = $_GET['search'] ?? '';
-    $page = (int)($_GET['page'] ?? 1);
+    $page = isset($_GET['page']) ? max((int)$_GET['page'], 1) : 1;
     $per_page = 5;
     $offset = ($page - 1) * $per_page;
 
-    $params = [];
     $where_clause = '';
-
+    
     if (!empty($search)) {
-        $where_clause = " WHERE company_name LIKE ?";
-        $params[] = '%' . $search . '%';
+        // Escape the string to prevent SQL injection
+        $escaped_search = addslashes($search); 
+        $where_clause = "WHERE company_name LIKE '%$escaped_search%'";
     }
 
-    // Query to get paginated records
-    $sql = "SELECT * FROM service_providers $where_clause ORDER BY company_name ASC LIMIT $offset, $per_page";
+    $sql = "SELECT sp.*, a.email 
+        FROM service_providers sp
+        JOIN account a ON sp.account_id = a.id
+        $where_clause
+        ORDER BY sp.company_name ASC
+        LIMIT $offset, $per_page";
 
-    // Query to count total matching records
-    $count_sql = "SELECT COUNT(*) as total FROM service_providers $where_clause";
-
-    $data['service_providers'] = $this->model->query($sql, 'object', $params);
-    $count_result = $this->model->query($count_sql, 'object', $params);
+// For counting total matching records (no need for join here, just count service_providers)
+$count_sql = "SELECT COUNT(*) as total FROM service_providers sp $where_clause";
+    try {
+        $data['service_providers'] = $this->model->query($sql, 'object');
+        $count_result = $this->model->query($count_sql, 'object');
+    } catch (PDOException $e) {
+        die("SQL Error: " . $e->getMessage() . "<br>SQL: $sql");
+    }
 
     $total_records = $count_result[0]->total ?? 0;
-
     $data['total_pages'] = ceil($total_records / $per_page);
     $data['current_page'] = $page;
+    
     $data['search'] = $search;
 
     $this->view('partials/registry_list', $data);
 }
-
 
 
     	public function dashboard(): void {
