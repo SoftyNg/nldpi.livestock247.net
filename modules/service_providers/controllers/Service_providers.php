@@ -872,6 +872,49 @@ WHERE a.email = :email;';
 }
 
     
+   public function countAll() {
+        $sql = "SELECT COUNT('id') AS count FROM service_providers";
+        $rows = $this->model->query($sql, 'object');
+
+        if (!empty($rows)) {
+            return $rows[0]->count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countApproved() {
+    $sql = "SELECT COUNT(id) AS count FROM service_providers WHERE status = 1";
+    $rows = $this->model->query($sql, 'object');
+
+    if (!empty($rows)) {
+        return $rows[0]->count;
+    } else {
+        return 0;
+    }
+}
+
+public function countPending() {
+    $sql = "SELECT COUNT(id) AS count FROM service_providers WHERE status = 0";
+    $rows = $this->model->query($sql, 'object');
+
+    if (!empty($rows)) {
+        return $rows[0]->count;
+    } else {
+        return 0;
+    }
+}
+
+
+public function getApprovedServiceProviders() {
+    $sql = "SELECT * FROM service_providers WHERE status = 1";
+    $rows = $this->model->query($sql, 'object'); // fetch as associative array
+     //json($rows); die();
+    return $rows;
+}
+
+
+
 
 
     

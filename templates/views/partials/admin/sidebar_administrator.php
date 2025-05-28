@@ -88,9 +88,9 @@
 
 
 
-<li class="nav-item <?= segment(2) === 'registries' ? 'active' : '' ?>">
+<li class="nav-item <?= segment(1) === 'digital_registry' ? 'active' : '' ?>">
 
-    <a class="nav-link" href="<?= BASE_URL . 'registries/dashboard'?>">
+    <a class="nav-link" href="<?= BASE_URL . 'digital_registry/dashboard'?>">
 
        
 
