@@ -57,6 +57,23 @@ class Market_registry extends Trongate {
 
 	}
 
+
+    	public function public_market(): void {	
+
+
+	      
+
+		$data['title'] = 'Livestock Market';
+
+		$data['view_module'] = 'market_registry';
+
+		$data['view_file'] = 'public_market';
+
+		$this->template('public', $data);
+
+	}
+
+
 	public function submit_market(){
 		$submit = post('submit', true);
         if ($submit) {
@@ -103,7 +120,10 @@ class Market_registry extends Trongate {
     $data['market_leader'] = post('market_leader');
     $data['phone'] = post('phone');  
     $data['email'] = post('email');  
-    $data['website'] = post('website');         
+    $data['website'] = post('website'); 
+    $data['security'] = post('security');  
+    $data['vet_services'] = post('vet_services');  
+    $data['bank'] = post('bank');        
     return $data;
 }
 

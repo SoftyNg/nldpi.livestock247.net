@@ -254,8 +254,7 @@
 
                     </div>   
                 </div>
-                
-                <div class="row">
+                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                         <div class="form-group">
                         <?php
@@ -288,6 +287,57 @@ $attr1 = [
                         </div>
 
                     </div>   
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                        <?php
+                                $attr1 = [
+                                    'class' => 'form-control',
+                                    'placeholder' => 'if any...'
+                                ];
+                                echo form_label('Security threat ');
+                                  ?>
+                                </br>
+                                <?php
+                                echo form_checkbox('security', 1,  $attr1);
+                                
+                            ?>
+                             </div>
+                            </div>
+                               <div class="col">
+                               <div class="form-group">
+                        <?php
+                                $attr1 = [
+                                    'class' => 'form-control',
+                                    'placeholder' => 'if any...'
+                                ];
+                                echo form_label('Vet Services ');
+                                  ?>
+                                </br>
+                                <?php
+                                echo form_checkbox('vet_services', 1,  $attr1);
+                            ?>
+                             </div>
+                            </div>
+                             <div class="col">
+
+                               <div class="form-group">
+                        <?php
+                                $attr1 = [
+                                    'class' => 'form-control',
+                                    'placeholder' => 'if any...'
+                                ];
+                                echo form_label('Banking Service ');
+                                ?>
+                                </br>
+                                <?php
+                                echo form_checkbox('bank', 1,  $attr1);
+                            ?>
+                             </div>
+                            </div>
+                     
                 </div>
                 <hr>
                 <div class="form-footer d-flex justify-content-between"> 
