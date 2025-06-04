@@ -41,6 +41,7 @@ class Admin extends Trongate {
 	public function approve_application(): void {
 
 		$type = segment(3);
+	 
 
 		$id = (int)segment(4);
 
@@ -68,7 +69,42 @@ class Admin extends Trongate {
 
 				$param['comment'] = "Registration Approved";
 
+
+					switch ($type) {
+
+			case 'service-provider':
+
 				$param['user_type'] = 2;
+
+				break;
+
+			case 'veterinary-professional':
+
+				$param['user_type'] = 3;
+
+				break;
+
+			case 'livestock-keeper':
+
+				$param['user_type'] = 4;
+
+				break;
+
+			case 'livestock-transporter':
+
+				$param['user_type'] = 5;
+
+				break;
+
+			default:
+
+				$param['user_type'] = 0;
+
+				break;
+
+		}
+
+				
 
 
 

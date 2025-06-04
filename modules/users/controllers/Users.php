@@ -67,9 +67,9 @@ class Users extends Trongate {
         $redirect_pages = [
             1 => 'admin/dashboard',
             2 => 'service_providers/dashboard',
-            3 => 'verterinary_service/dashboard',
-            4 => 'moderator/panel',
-            5 => 'editor/workspace',
+            3 => 'veterinary_professionals/dashboard',
+            4 => 'livestock_keepers/dashboard',
+            5 => 'transporters/dashboard',
             6 => 'users/support',
             7 => 'users/reports',
             8 => 'finance/transactions',
