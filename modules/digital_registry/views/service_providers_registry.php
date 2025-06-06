@@ -17,7 +17,8 @@
   <ul class="pagination">
     <?php for ($i = 1; $i <= $total_pages; $i++): ?>
       <li class="page-item <?= ($i == $current_page) ? 'active' : '' ?>">
-        <a href="#" class="page-link pagination-link" data-page="<?= $i ?>"><?= $i ?></a>
+        <a href="#" class="page-link pagination-link" data-page="<?= $i ?>"><?= $i ?>
+      </a>
       </li>
     <?php endfor; ?>
   </ul>
