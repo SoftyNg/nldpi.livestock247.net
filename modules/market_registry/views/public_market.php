@@ -1,14 +1,4 @@
 
-<?php $email = $_SESSION['email'];
-    $user_data =  Modules::run('service_providers/_fetch_all_data_for_user', $email); 
-    ?>
-<?php foreach ($user_data as $user) :
-   $name = $user->company_name;
-   $nldpiNumber = $user->nldpi_number;      
- endforeach; 
- ?>
-
-
 <div class="hero-container-market">
 
     <div>
@@ -69,7 +59,7 @@
   .relative-container {
       position: relative;
       
-      border: 1px solid #dee2e6;
+     
       border-radius: 0.25rem;
     }
 
@@ -154,7 +144,9 @@
 <text x="150" y="420" font-size="14" fill="black">Ondo</text>
 <text x="100" y="390" font-size="14" fill="black">Osun</text> 
 <text x="200" y="500" font-size="14" fill="black">Delta</text>
-<text x="190" y="550" font-size="14" fill="black">Bayelsa</text>
+<text x="190" y="550" font-size="14" fill="black" data-state="Bayelsa" class="state-label" style="cursor: pointer;">
+  Bayelsa
+</text>
 <text x="250" y="550" font-size="14" fill="black">Rivers</text> 
 <text x="310" y="550" font-size="14" fill="black">A.Ibom</text>
 <text x="290" y="440" font-size="14" fill="black">Enugu</text> 
@@ -390,9 +382,6 @@ foreach ($states as $state):
     endswitch;
 endforeach;
 ?>
-
-
-
 </svg>
 
  
@@ -409,30 +398,109 @@ endforeach;
                           
                         </div>
                         <div class="col">
-                            <div id="state-info" class="card shadow mb-4">
-   
-                             
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Search Location</h6>
-                                   
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
-                                   
-                                     <img src="<?= BASE_URL ?>images/HandTap.png" alt="Location Icon" class="mb-3">
-    <h6>Click on a location to see all livestock markets in that area</h6>
-</div>
-                                 
-                                </div>
-                            </div>
- 
+  <div class="card shadow mb-4">
+    <!-- Card Header -->
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Search Location</h6>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body d-flex flex-column justify-content-center ">
+      <!-- Search Field -->
+      <div class="input-group mb-4" style="max-width: 400px; width: 100%;">
+        <input type="text" id="locationSearchInput" class="form-control" placeholder="Enter location name">
+        <div class="input-group-append">
+          <button class="btn btn-white" type="button" id="clearBtn">Clear</button>
+          <button class="btn btn-primary" type="button" id="searchBtn">Search</button>
+        </div>
+      </div>
+
+      <div id="state-info">
+        <div class="text-center">
+          <img src="<?= BASE_URL ?>images/HandTap.png" alt="Location Icon" class="mb-3">
+          <h6>Click on a location to see all livestock markets in that area</h6>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-</div>
-                    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
+  // Shared render function with pagination
+  function renderMarketData(containerId, data, title) {
+    const infoDiv = document.getElementById(containerId);
+    if (!data || data.length === 0) {
+      infoDiv.innerHTML = '<p>No data found.</p>';
+      return;
+    }
+
+    const itemsPerPage = 5;
+    let currentPage = 1;
+    const totalPages = Math.ceil(data.length / itemsPerPage);
+
+    function renderPage(page) {
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      const pageItems = data.slice(start, end);
+
+      let marketRows = '';
+      pageItems.forEach(entry => {
+        let vetSection = entry.vet_services == 1 ? `
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <img src="<?= BASE_URL ?>images/Hospital.png" alt="Vet Icon"> Vet
+          </div>` : '';
+
+        let bankSection = entry.bank == 1 ? `
+          <div style="display: flex; align-items: center; gap: 5px;">
+            <img src="<?= BASE_URL ?>images/Bank.png"> Bank
+          </div>` : '';
+
+        marketRows += `
+          <div class="mb-3 border rounded w-100">
+            <h6 class="mb-0" style="color:green"> ${entry.operating_days}</h6>
+            <p class="mb-1"><strong> ${entry.name}</strong></p>
+            <div style="display: flex; gap: 20px; align-items: center;">
+              <h6 class="mb-1"><img src="<?= BASE_URL?>images/location.png"> ${entry.lga}</h6>
+              ${vetSection}
+              ${bankSection}
+            </div>
+          </div>`;
+      });
+
+      let paginationHTML = '<div class="pagination">';
+      paginationHTML += `<a href="#" ${page === 1 ? 'class="disabled"' : ''} data-page="${page - 1}">← Previous</a>`;
+      for (let i = 1; i <= totalPages; i++) {
+        paginationHTML += `<a href="#" class="${page === i ? 'active' : ''}" data-page="${i}">${i}</a>`;
+      }
+      paginationHTML += `<a href="#" ${page === totalPages ? 'class="disabled"' : ''} data-page="${page + 1}">Next →</a>`;
+      paginationHTML += '</div>';
+
+      infoDiv.innerHTML = `
+        <div>
+          <h5 class="font-weight-bold text-black">${title}</h5>
+          ${marketRows}
+          ${paginationHTML}
+        </div>`;
+
+      // Pagination link handlers
+      document.querySelectorAll('.pagination a').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          const newPage = parseInt(this.getAttribute('data-page'));
+          if (!isNaN(newPage) && newPage >= 1 && newPage <= totalPages) {
+            currentPage = newPage;
+            renderPage(currentPage);
+          }
+        });
+      });
+    }
+
+    renderPage(currentPage);
+  }
+
+  // Map click handler
   document.querySelectorAll('.nigeria-map svg path').forEach(function(state) {
     state.addEventListener('click', function () {
       const stateName = this.getAttribute('data-state');
@@ -443,30 +511,7 @@ endforeach;
         .then(response => response.json())
         .then(data => {
           if (data.success) {
-            let marketRows = '';
-
-            data.data.forEach((entry, index) => {
-              marketRows += `
-                <div class="mb-3 p-2 border-bottom">
-                <h6 class="mb-0" style="color:green"> ${entry.operating_days}</h6>
-                 
-                  <p class="mb-1"><strong> ${entry.name}</strong> </p>
-                  <h6 class="mb-1"> <img src="<?= BASE_URL?>images/location.png" > ${entry.lga}</h6>
-                  
-                </div>
-              `;
-            });
-
-            infoDiv.innerHTML = `
-              <div class="card shadow" style="width:100%">
-                <div class="card-header py-3">
-                  <h5 class="m-0 font-weight-bold text-black">${stateName}</h5>
-                </div>
-                <div class="card-body">
-                  ${marketRows}
-                </div>
-              </div>
-            `;
+            renderMarketData('state-info', data.data, stateName);
           } else {
             infoDiv.innerHTML = '<p>No data found for this state.</p>';
           }
@@ -477,7 +522,86 @@ endforeach;
         });
     });
   });
+
+  // Search button handler
+  $(document).ready(function () {
+    $('#searchBtn').on('click', function () {
+      const query = $('#locationSearchInput').val().trim();
+      const infoDiv = document.getElementById('state-info');
+
+      if (query === '') {
+        infoDiv.innerHTML = '<p>Please enter a location to search.</p>';
+        return;
+      }
+
+      infoDiv.innerHTML = 'Searching for: ' + query;
+
+      $.post('<?= BASE_URL ?>market_registry/get_state_data', { location: query }, function (response) {
+        // Assuming your controller returns JSON with { success: bool, data: [...] }
+        try {
+          const data = JSON.parse(response);
+          if (data.success) {
+            renderMarketData('state-info', data.data, `Search Results for "${query}"`);
+          } else {
+            infoDiv.innerHTML = '<p>No results found.</p>';
+          }
+        } catch (e) {
+          console.error('Error parsing JSON:', e);
+          infoDiv.innerHTML = '<p>Error processing search results.</p>';
+        }
+      }).fail(() => {
+        infoDiv.innerHTML = '<p>Search request failed.</p>';
+      });
+    });
+
+    $('#clearBtn').on('click', function () {
+      $('#locationSearchInput').val('');
+      $('#state-info').html(`
+        <div class="text-center">
+          <img src="<?= BASE_URL ?>images/HandTap.png" alt="Location Icon" class="mb-3">
+          <h6>Click on a location to see all livestock markets in that area</h6>
+        </div>`);
+    });
+  });
 </script>
+
+<style>
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.pagination a {
+  padding: 6px 12px;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #4b5563;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+.pagination a:hover {
+  background-color: #f3f4f6;
+}
+.pagination .active {
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+  box-shadow: 0 0 0 2px #d1d5db;
+}
+.pagination .disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+</style>
+
+
+
+
+
+
 
 
 
