@@ -1,7 +1,7 @@
   <style>
     .hero-banner {
       background-color: #0b9d5c; /* Green */
-      padding: 100px 20px;
+      padding: 100px;
       color: white;
       text-align: center;
     }
@@ -21,13 +21,13 @@
   </style>
  
 
-
+<div class="container-fluid">
 <div class="hero-banner">
   <h2 class="font-weight-bold">Livestock Services</h2>
   <div class="search-box">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search Vet clinic, markets, transporters, service provider">
-      <div class="input-group-append">
+      <input type="text" id="serviceSearch" class="form-control" placeholder="Search Vet clinic, markets, transporters, service provider">
+<div class="input-group-append">
         <button class="btn btn-white" type="button">
           <span><img src="<?= BASE_URL ?>images/MagnifyingGlass.png"></span>
         </button>
@@ -36,7 +36,7 @@
   </div>
 </div>
 
-<div class="container-fluid row">
+<div class=" row">
 
   <div class="card col-md-4">
     <div class="card-body">
@@ -80,28 +80,33 @@
     </div>
   </div>
 
-  <div class="col-md-8" style="background-color:#F5FCF9; height:100%;">
+  <div class="col-md-8 " style="background-color:#F5FCF9;">
     <!-- This is where service results will be loaded -->
     <div id="serviceList">
       <?php
+      json($all_services);
     require_once APPPATH . 'modules/digital_services/views/service_list_partial.php';
 
       ?>
     </div>
   </div>
-
+  </div>
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
   $(document).ready(function () {
-    $('input[name="serviceFilter"]').on('change', function () {
-      let selectedId = $(this).attr('id');
+    function fetchFilteredServices() {
+      let selectedType = $('input[name="serviceFilter"]:checked').attr('id');
+      let keyword = $('#serviceSearch').val();
 
       $.ajax({
         url: "<?= BASE_URL ?>digital_services/fetch_services",
         method: "POST",
-        data: { type: selectedId },
+        data: {
+          type: selectedType,
+          keyword: keyword
+        },
         success: function (response) {
           $('#serviceList').html(response);
         },
@@ -109,12 +114,18 @@
           alert('Error loading data.');
         }
       });
+    }
+
+    $('input[name="serviceFilter"]').on('change', fetchFilteredServices);
+    $('#serviceSearch').on('input', function () {
+      fetchFilteredServices();
     });
 
-    // Trigger initial load to show all services
-    $('input[name="serviceFilter"]:checked').trigger('change');
+    // Initial load
+    fetchFilteredServices();
   });
 </script>
+
 
 
 
