@@ -871,6 +871,45 @@ WHERE a.email = :email;';
    return $rows;       
 }
 
+
+ public function _fetch_animals_for_user($nldpiNumber) {	
+    $params['nldpiNumber'] = $nldpiNumber;
+    $sql = 'SELECT * FROM animal_registrations WHERE nldpi_number = :nldpiNumber';		
+    $rows = $this->model->query_bind($sql, $params, 'object');
+   return $rows;       
+}
+
+
+ public function _fetch_animals_goat($nldpiNumber) {	
+    $params['nldpiNumber'] = $nldpiNumber;
+       $params['animal'] = 'goat';
+    $sql = 'SELECT * FROM animal_registrations WHERE nldpi_number = :nldpiNumber AND 
+    livestock_type = :animal';		
+    $rows = $this->model->query_bind($sql, $params, 'object');
+   return $rows;       
+}
+
+
+public function _fetch_animals_cow($nldpiNumber) {	
+    $params['nldpiNumber'] = $nldpiNumber;
+       $params['animal'] = 'cow';
+    $sql = 'SELECT * FROM animal_registrations WHERE nldpi_number = :nldpiNumber AND 
+    livestock_type = :animal';		
+    $rows = $this->model->query_bind($sql, $params, 'object');
+   return $rows;       
+}
+
+
+public function _fetch_animals_sheep($nldpiNumber) {	
+    $params['nldpiNumber'] = $nldpiNumber;
+       $params['animal'] = 'sheep';
+    $sql = 'SELECT * FROM animal_registrations WHERE nldpi_number = :nldpiNumber AND 
+    livestock_type = :animal';		
+    $rows = $this->model->query_bind($sql, $params, 'object');
+   return $rows;       
+}
+
+
     
    public function countAll() {
         $sql = "SELECT COUNT('id') AS count FROM service_providers";

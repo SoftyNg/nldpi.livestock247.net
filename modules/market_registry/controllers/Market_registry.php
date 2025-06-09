@@ -212,4 +212,20 @@ class Market_registry extends Trongate {
 
     }
 
+           
+   public function countAll() {
+        $sql = "SELECT COUNT('id') AS count FROM livestock_markets";
+        $rows = $this->model->query($sql, 'object');
+
+        if (!empty($rows)) {
+            return $rows[0]->count;
+        } else {
+            return 0;
+        }
+    }
+
+  
+
+    
+
 }

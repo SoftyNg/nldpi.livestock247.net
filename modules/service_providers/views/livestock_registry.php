@@ -1,4 +1,10 @@
-<div class="baseline mb-4 p-4">
+<?php $email = $_SESSION['email'];
+    $user_data =  Modules::run('service_providers/_fetch_all_data_for_user', $email); 
+   foreach ($user_data as $user) :
+   $name = $user->company_name;
+   $nldpiNumber = $user->nldpi_number;      
+ endforeach; ?>
+ <div class="baseline mb-4 p-4">
 
     <div class="base-left">
 
@@ -49,7 +55,8 @@
 
                        
 
-                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2"><?= $total_registered_breed ?></div>
+                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2">
+                            <?= count(Modules::run('service_providers/_fetch_animals_for_user', $nldpiNumber));?></div>
 
                  
 
@@ -79,7 +86,9 @@
 
                        
 
-                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2"><?= $total_registered_local_breed?></div>
+                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2">
+                             <?= count(Modules::run('service_providers/_fetch_animals_cow', $nldpiNumber));?>
+                            </div>
 
                     </div>
 
@@ -107,7 +116,9 @@
 
                        
 
-                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2"><?= $total_registered_exotic_breed?></div>
+                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2">
+                             <?= count(Modules::run('service_providers/_fetch_animals_sheep', $nldpiNumber));?>
+                            </div>
 
                     </div>
 
@@ -135,7 +146,8 @@
 
                        
 
-                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2"><?= $total_registered_exotic_breed?></div>
+                         <div class="h5 mb-0 font-weight-bold text-gray-800 mt-2">
+                            <?= count(Modules::run('service_providers/_fetch_animals_goat', $nldpiNumber));?></div>
 
                     </div>
 
@@ -217,28 +229,26 @@
 
                                         <tbody>
 
-                                                <?php foreach ($livestock_list as $livestock) { ?>
+                                            <?php     $livestock_list =  Modules::run('service_providers/_fetch_animals_for_user', $nldpiNumber); 
+                                                 foreach ($livestock_list as $livestock) { ?>
 
                                                     <tr>
 
-                                                        <td><?= $livestock->name; ?></td>
+                                                        <td><?= $livestock->reg_date; ?></td>
 
-                                                        <td><?= $livestock->type_of_animal; ?></td>
+                                                        <td><?= $livestock->animal_id; ?></td>
 
-                                                        <td><?= $livestock->breed_type; ?></td>
+                                                        <td><?= $livestock->livestock_type; ?></td>
 
-                                                        <td><?= $livestock->description; ?></td>
+                                                        <td><?= $livestock->breed; ?></td>
 
-                                                        <td><?= $livestock->additional_note; ?></td>
+                                                        <td><?= $livestock->reg_point; ?></td>
 
                                                         <td>
-<a href="" class="btn btn-outline-dark btn-sm edit-breed-registration" id="<?= $breed->id ?>"
- data-toggle="modal" title="Edit" data-target="#<?= $breed->id ?>editBreedRegistration" >
- <i class="fa fa-edit fa-sm"></i></a>
 
-<a href="" class="btn btn-outline-danger btn-sm delete-breed-registration" id-data="<?= $breed->id ?>" 
-data-toggle="modal" title="Delete" data-target="#<?= $breed->id ?>deleteBreedRegistration" >
-<i class="fa fa-trash fa-sm"></i></a>
+                                                            <a href="" class="btn btn-outline-dark btn-sm edit-breed-registration" id="<?= $livestock->id ?>" data-toggle="modal" title="Edit" data-target="#<?= $livestock->id ?>editBreedRegistration" ><i class="fa fa-edit fa-sm"></i></a>
+
+                                                            <a href="" class="btn btn-outline-danger btn-sm delete-breed-registration" id-data="<?= $livestock->id ?>" data-toggle="modal" title="Delete" data-target="#<?= $livestock->id ?>deleteBreedRegistration" ><i class="fa fa-trash fa-sm"></i></a>
 
                                                         </td>
 
