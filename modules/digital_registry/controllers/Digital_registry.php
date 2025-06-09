@@ -94,6 +94,47 @@ $count_sql = "SELECT COUNT(*) as total FROM service_providers sp $where_clause";
 }
 
 
+
+function ajax_vet_professionals_registry() {
+    $search = $_GET['search'] ?? '';
+    $page = isset($_GET['page']) ? max((int)$_GET['page'], 1) : 1;
+    $per_page = 5;
+    $offset = ($page - 1) * $per_page;
+
+    $where_clause = '';
+    
+    if (!empty($search)) {
+        // Escape the string to prevent SQL injection
+        $escaped_search = addslashes($search); 
+        $where_clause = "WHERE company_name LIKE '%$escaped_search%'";
+    }
+
+    $sql = "SELECT v.*, a.email 
+        FROM veterinary_professionals v
+        JOIN account a ON v.account_id = a.id
+        $where_clause
+        ORDER BY v.firstname ASC
+        LIMIT $offset, $per_page";
+
+// For counting total matching records (no need for join here, just count service_providers)
+$count_sql = "SELECT COUNT(*) as total FROM veterinary_professionals v $where_clause";
+    try {
+        $data['veterinary_professionals'] = $this->model->query($sql, 'object');
+        $count_result = $this->model->query($count_sql, 'object');
+    } catch (PDOException $e) {
+        die("SQL Error: " . $e->getMessage() . "<br>SQL: $sql");
+    }
+
+    $total_records = $count_result[0]->total ?? 0;
+    $data['total_pages'] = ceil($total_records / $per_page);
+    $data['current_page'] = $page;
+    
+    $data['search'] = $search;
+
+    $this->view('partials/vet_list', $data);
+}
+
+
     	public function dashboard(): void {
 		
 
@@ -151,6 +192,19 @@ $count_sql = "SELECT COUNT(*) as total FROM service_providers sp $where_clause";
 
 	}
 
+    	public function veterinary_service_public(): void {
+		       
+
+		$data['title'] = 'Vet Public view';
+
+		$data['view_module'] = 'digital_registry';
+
+		$data['view_file'] = 'veterinary_service_public';
+
+		$this->template('public', $data);
+
+	}
+
 
 
 
@@ -197,6 +251,52 @@ $count_sql = "SELECT COUNT(*) as total FROM service_providers sp $where_clause";
         $this->template('public', $data);
 
     }
+
+
+
+
+        
+   public function countAllVet() {
+        $sql = "SELECT COUNT('id') AS count FROM veterinary_professionals";
+        $rows = $this->model->query($sql, 'object');
+
+        if (!empty($rows)) {
+            return $rows[0]->count;
+        } else {
+            return 0;
+        }
+    }
+
+    public function countApprovedVet() {
+    $sql = "SELECT COUNT(id) AS count FROM veterinary_professionals WHERE status = 1";
+    $rows = $this->model->query($sql, 'object');
+
+    if (!empty($rows)) {
+        return $rows[0]->count;
+    } else {
+        return 0;
+    }
+}
+
+public function countPendingVet() {
+    $sql = "SELECT COUNT(id) AS count FROM veterinary_professionals WHERE status = 0";
+    $rows = $this->model->query($sql, 'object');
+
+    if (!empty($rows)) {
+        return $rows[0]->count;
+    } else {
+        return 0;
+    }
+}
+
+public function getApprovedVets() {
+    $sql = "SELECT * FROM veterinary_professionals WHERE status = 1";
+    $rows = $this->model->query($sql, 'object'); // fetch as associative array
+     //json($rows); die();
+    return $rows;
+}
+
+
 
 
 

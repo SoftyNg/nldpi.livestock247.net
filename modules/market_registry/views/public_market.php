@@ -397,6 +397,9 @@ endforeach;
 </div>
                           
                         </div>
+
+
+
                         <div class="col">
   <div class="card shadow mb-4">
     <!-- Card Header -->
@@ -423,6 +426,8 @@ endforeach;
       </div>
     </div>
   </div>
+</div>
+
 </div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

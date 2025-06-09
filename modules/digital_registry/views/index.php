@@ -52,7 +52,7 @@
 
                     <a href="<?= BASE_URL?>veterinary_professionals/register" class="btn btn-success">Register</a>
 
-                    <a href="<?= BASE_URL?>digital_registry" class="btn btn-view-registry">View Registry</a>
+                    <a href="<?= BASE_URL?>digital_registry/veterinary_service_public" class="btn btn-view-registry">View Registry</a>
 
                 </div>
 

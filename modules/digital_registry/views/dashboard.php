@@ -111,11 +111,16 @@
 </div>
 
 </div>
-
+<style>
+.col-a a {
+  color: #000000;
+  text-decoration: underline;
+}
+</style>
 
 
 <!-- Content Row -->
-<div class="col">
+<div class="col col-a">
 <p><a href="digital_registry/id_service_providers">Livestock Identity Service Providers</a></p>
 <p><a href="">Livestock Transporters</a></p>
 <p><a href="">Livestock Keepers and Farmers</a></p>

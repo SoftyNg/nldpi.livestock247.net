@@ -1,6 +1,6 @@
 <div class="container mt-5">
-    <h2 class="fw-semibold mb-4">Livestock Identity Service Providers Registry</h2>
-    <p>Find A Service Provider</p>
+    <h2 class="fw-semibold mb-4">Veterinary Professional Registry</h2>
+    <p>Find A Veterinary Professional</p>
     <div class="mb-4">
         <input type="text" id="search-input" class="form-control" placeholder="Search by name or location">
     </div>
@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function loadResults(search = '', page = 1) {
         const params = new URLSearchParams({ search, page });
-        fetch('<?= BASE_URL ?>digital_registry/ajax_service_providers_registry?' + params)
+        fetch('<?= BASE_URL ?>digital_registry/ajax_vet_professionals_registry?' + params)
             .then(res => res.text())
             .then(html => {
                 document.querySelector('#registry-results').innerHTML = html;

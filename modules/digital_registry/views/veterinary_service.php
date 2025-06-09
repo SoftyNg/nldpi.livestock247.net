@@ -113,7 +113,7 @@
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                             Total Registered</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?= Modules::run('service_providers/countAll'); ?>
+                        <?= Modules::run('digital_registry/countAllVet'); ?>
                         
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                             Approved</div>
                         <div class="h5 mb-0 font-weight-bold text-gray-800">
-                        <?= Modules::run('service_providers/countApproved'); ?>
+                        <?= Modules::run('digital_registry/countApprovedVet'); ?>
                         </div>
                     </div>
                    
@@ -153,7 +153,7 @@
                         <div class="row no-gutters align-items-center">
                             <div class="col-auto">
                                 <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
-                                 <?= Modules::run('service_providers/countPending'); ?>
+                                 <?= Modules::run('digital_registry/countPendingVet'); ?>
                                 </div>
                             </div>
                            
@@ -211,11 +211,11 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
-    <?php $sp_data =  Modules::run('service_providers/getApprovedServiceProviders'); ?>
+    <?php $sp_data =  Modules::run('digital_registry/getApprovedVets'); ?>
 
                                         <tr>
                                             <th>Name</th>
-                                            <th>CAC Registration Number</th>
+                                            <th>Professional ID</th>
                                             <th>Date Registered</th>
                                             
                                             <th>Status</th>
@@ -228,7 +228,7 @@
                                     <?php if (count($sp_data) > 0) { ?>
                                     <?php foreach ($sp_data as $sp)  {
    
-   $name = $sp->company_name;
+   $name = $sp->firstname;
    $reg_number = $sp->reg_number; 
    $status = $sp->status;
    $reg_date = date('Y-m-d', $sp->date_created);
