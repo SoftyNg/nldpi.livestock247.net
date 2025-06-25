@@ -24,6 +24,10 @@ class Trongate_security extends Trongate {
                 $this->module('service_providers');
                 $token = $this->service_providers->_make_sure_allowed();
                 break;
+             case 'veterinary professional':
+                 $this->module('users');
+                 $token = $this->users->_make_sure_allow_veterinary_professional();
+                 break;
             default:
                 $this->module('trongate_administrators');
                 $token = $this->trongate_administrators->_make_sure_allowed($scenario, $params);

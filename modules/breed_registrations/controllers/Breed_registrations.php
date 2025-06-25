@@ -30,7 +30,7 @@ class Breed_registrations extends Trongate {
 
     public function create(): void {
         $this->module('trongate_security');
-        $this->trongate_security->_make_sure_allowed();
+        $this->trongate_security->_make_sure_allowed('admin');
 
         $update_id = (int) segment(3);
         $submit = post('submit');
@@ -48,6 +48,8 @@ class Breed_registrations extends Trongate {
             $data['headline'] = 'Create New Breed Record';
             $data['cancel_url'] = BASE_URL.'breed_registrations';
         }
+
+        $data['user_data'] = $this->_get_user_data($this->trongate_security->_make_sure_allowed('admin'));
         $data['title'] = 'Register Breed';
         $data['form_location'] = BASE_URL.'breed_registrations/submit/'.$update_id;
         $data['update_id'] = $update_id;
@@ -112,6 +114,68 @@ class Breed_registrations extends Trongate {
             8 => 'Other'
         ];
     }
+
+
+    function breed_options(): array{
+        return [
+            '' => 'Select Breed',
+            1 => 'Sokoto gudali',
+            2 => 'Bororo',
+            3 => 'White fulani',
+            4 => 'Bokolo',
+            5 => 'Bunaji',
+        ];
+    }
+
+
+    
+    function sex_options(): array{
+        return [
+            '' => 'Select Sex',
+            1 => 'Male',
+            2 => 'Female',
+        ];
+    }
+
+
+    function livestock_purpose_options(): array{
+        return [
+            '' => 'Select Livestock Purpose',
+            1 => 'Dairy',
+            2 => 'Meat',
+        ];
+    }
+
+    function weight_options(): array{
+        return [
+            '' => 'Select Weight Range',
+            1 => '6 - 30kg',
+            2 => '51 - 80kg',
+            3 => '91 - 120kg'
+        ];
+    }
+
+    function  age_range_options(): array{
+        return [
+            '' => 'Select Age Range',
+            1 => '0 - 6months',
+            2 => '6 - 12months',
+            3 => '1 - 3years'
+        ];
+    }
+
+
+    function reg_point_options(): array{
+        return [
+            '' => 'Select Registration Point',
+            1 => 'Ranch',
+            2 => 'Farm',
+            3 => 'Market',
+            4 => 'Owner\'s Premises'
+        ];
+    }
+
+    
     function status_type_options() {
         return [
             0 => 'Inactive',
@@ -217,7 +281,7 @@ class Breed_registrations extends Trongate {
 
     function index(): void{
         $this->module('trongate_security');
-        $this->trongate_security->_make_sure_allowed('member area');
+        $this->trongate_security->_make_sure_allowed('admin');
 
 
         $sql= "SELECT * FROM breed_registrations";
@@ -225,7 +289,7 @@ class Breed_registrations extends Trongate {
         $total_registered_breed  = $this->model->count('breed_registrations');
         $total_registered_local_breed = $this->model->count_where('breed_type', 1, '=', 'breed_registrations');
         $total_registered_exotic_breed = $this->model->count_where('breed_type', 2, '=', 'breed_registrations');
-
+        $data['user_data'] = $this->_get_user_data($this->trongate_security->_make_sure_allowed('admin'));
         $data['title'] = 'Breed Dashboard';
         $data['total_registered_breed'] = $total_registered_breed;
         $data['total_registered_local_breed'] = $total_registered_local_breed;
@@ -243,23 +307,22 @@ class Breed_registrations extends Trongate {
 
     function register_breed(): void{
         $this->module('trongate_security');
-        $this->trongate_security->_make_sure_allowed('member area');
+        $this->trongate_security->_make_sure_allowed('admin');
         $_SESSION['last_page'] = 'breed_registrations/register_breed';
     
         $data = [
-            //'user_data' => $this->_get_user_data($this->trongate_security->_make_sure_allowed('member area')),
+            'user_data' => $this->_get_user_data($this->trongate_security->_make_sure_allowed('admin')),
             'title' => 'Register Breed',
             'view_file' => '_register_new_breed_form',
             'view_module' => 'breed_registrations'
         ];
-    
         $this->template($this->template_admin, $data);
     }
 
     function add_breed(){
         
         $this->module('trongate_security');
-        $this->trongate_security->_make_sure_allowed('member area');
+        $this->trongate_security->_make_sure_allowed('admin');
         $submit = post('submit', true);
 
         if ($submit === 'Submit') {
@@ -331,7 +394,7 @@ function get_breed_registration($breed_registration_id){
 //Update butchery
 function update_breed_registration(){
     $this->module('trongate_security');
-    $this->trongate_security->_make_sure_allowed('member area');
+    $this->trongate_security->_make_sure_allowed('veterinary professional');
     
     $_SESSION['last_page'] = 'breed_registrations';   
     $data = $this->_get_data_from_breed_registration_for_update();
@@ -347,7 +410,7 @@ function update_breed_registration(){
 function delete_breed_registration(){
     
     $this->module('trongate_security');
-    $this->trongate_security->_make_sure_allowed('member area');
+    $this->trongate_security->_make_sure_allowed('veterinary professional');
     
     $_SESSION['last_page'] = 'breed_registrations';   
     $data['id'] =   post('id', true);
@@ -360,17 +423,16 @@ function delete_breed_registration(){
 
     
   // Fetch user data based on token
-   private function _get_user_data($token) {
+  private function _get_user_data($token) {
 
-     $params = ['token' => $token];
-    $sql = 'SELECT a.id, t.user_id, a.user_type, a.email, a.picture, t.token
-          FROM trongate_tokens t
-           INNER JOIN account a ON a.user_id = t.user_id
-           WHERE t.token = :token';
-       return $this->model->query_bind($sql, $params, 'object');
+    $params = ['token' => $token];
+    $sql = 'SELECT a.id, t.user_id, a.firstname, a.user_type, a.lastname, a.email, a.picture, t.token
+            FROM trongate_tokens t
+            INNER JOIN account a ON a.user_id = t.user_id
+            WHERE t.token = :token';
+    return $this->model->query_bind($sql, $params, 'object');
   
-   }
-    
+}
 
 
     /**
@@ -555,17 +617,5 @@ function delete_breed_registration(){
      */
 
 
-     function _get_breed_list() {
-        $params['status'] = 1;
-            $sql = 'SELECT * FROM breed_registrations WHERE status= :status';            
-            $rows = $this->model->query_bind($sql, $params, 'object');
-       
-        foreach ($rows as $row) {
-            $options[$row->name] = $row->name;
-        }
-        return $options;
-    }
-
-    
 
 }
