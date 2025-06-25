@@ -38,7 +38,7 @@ if (count($rows)>0) { ?>
                 <th>approx_age</th>
                 <th>colour</th>
                 <th>type_of_animal</th>
-                <th>reg_date</th>
+                <th>date_created</th>
                 <th>reg_point</th>
                 <th>reg_by</th>
                 <th style="width: 20px;">Action</th>            
@@ -59,7 +59,7 @@ if (count($rows)>0) { ?>
                 <td><?= out($row->approx_age) ?></td>
                 <td><?= out($row->colour) ?></td>
                 <td><?= out($row->type_of_animal) ?></td>
-                <td><?= date('l jS F Y \a\t H:i',  strtotime($row->reg_date)) ?></td>
+                <td><?= date('l jS F Y \a\t H:i',  strtotime($row->date_created)) ?></td>
                 <td><?= out($row->reg_point) ?></td>
                 <td><?= out($row->reg_by) ?></td>
                 <td><?= anchor('animal_registrations/show/'.$row->id, 'View', $attr) ?></td>        

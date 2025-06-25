@@ -56,9 +56,9 @@
             'cow' => 'Cow'
         );
         echo form_dropdown('type_of_animal', $type_of_animal, '');
-        echo form_label('reg_date');
+        echo form_label('date_created');
         $attr = array("class"=>"datetime-picker", "autocomplete"=>"off", "placeholder"=>"Select reg date");
-        echo form_input('reg_date', $reg_date, $attr);
+        echo form_input('date_created', $reg_date, $attr);
         echo form_label('reg_point');
         $reg_point = array(
             ''  => 'Select registration point',

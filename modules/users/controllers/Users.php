@@ -13,7 +13,6 @@ class Users extends Trongate {
     public function login(): void {
 
 
-
         $data['view_module'] = 'users';
 
         $data['title'] = 'Login';

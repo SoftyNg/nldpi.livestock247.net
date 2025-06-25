@@ -65,8 +65,8 @@
                     <div><?= out($type_of_animal) ?></div>
                 </div>
                 <div class="row">
-                    <div>reg_date</div>
-                    <div><?= date('l jS F Y \a\t H:i',  strtotime($reg_date)) ?></div>
+                    <div>date_created</div>
+                    <div><?= date('l jS F Y \a\t H:i',  strtotime($date_created)) ?></div>
                 </div>
                 <div class="row">
                     <div>reg_point</div>

@@ -929,13 +929,6 @@ function _make_sure_allowed() {
 	
     return $token;
   }
-
-
-
-
-
-
-
-   
+  
 
 }
