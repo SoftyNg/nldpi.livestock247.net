@@ -289,9 +289,7 @@ class Veterinary_professionals extends Trongate {
 
         $this->module('trongate_security');
 
-        $this->module('breed_registrations');
-
-       
+        $this->module('breed_registrations');       
 
         if (post('submit', true) == "Lookup") {
             
@@ -306,7 +304,7 @@ class Veterinary_professionals extends Trongate {
                 $data['user_data'] = $this->_get_user_data($this->trongate_security->_make_sure_allowed('veterinary professional'));
                
                 $user = $this->_get_user_data($this->trongate_security->_make_sure_allowed('veterinary professional'));
-
+                
                 $vet_professional_id = $user[0]->vet_professional_id;
                 
                 $data['sex_options'] =  $this->breed_registrations->sex_options();
@@ -329,10 +327,13 @@ class Veterinary_professionals extends Trongate {
 
                 $data['process_type_options'] =  $this->process_type_options();
 
-                $livestock_owner = $this->model->get_where($found_livestock[0]->owner_id,'livestock_keepers');
+                //json($found_livestock[0]->owner_id);die();
 
+                $livestock_owner = $this->model->get_where($found_livestock[0]->owner_id,'livestock_keepers');
+                    
                 $data['livestock_owner'] = $livestock_owner;
- 
+                  
+                
 
                 $data['livestock_owner_details'] = $this->model->get_where($livestock_owner->account_id,'account');
 

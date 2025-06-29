@@ -49,7 +49,7 @@ class Breed_registrations extends Trongate {
             $data['cancel_url'] = BASE_URL.'breed_registrations';
         }
 
-        $data['user_data'] = $this->_get_user_data($this->trongate_security->_make_sure_allowed('admin'));
+       // $data['user_data'] = $this->_get_user_data($this->trongate_security->_make_sure_allowed('admin'));
         $data['title'] = 'Register Breed';
         $data['form_location'] = BASE_URL.'breed_registrations/submit/'.$update_id;
         $data['update_id'] = $update_id;
@@ -130,6 +130,7 @@ class Breed_registrations extends Trongate {
 
     
     function sex_options(): array{
+        
         return [
             '' => 'Select Sex',
             1 => 'Male',
@@ -289,7 +290,7 @@ class Breed_registrations extends Trongate {
         $total_registered_breed  = $this->model->count('breed_registrations');
         $total_registered_local_breed = $this->model->count_where('breed_type', 1, '=', 'breed_registrations');
         $total_registered_exotic_breed = $this->model->count_where('breed_type', 2, '=', 'breed_registrations');
-        $data['user_data'] = $this->_get_user_data($this->trongate_security->_make_sure_allowed('admin'));
+        //$data['user_data'] = $this->_get_user_data($this->trongate_security->_make_sure_allowed('admin'));
         $data['title'] = 'Breed Dashboard';
         $data['total_registered_breed'] = $total_registered_breed;
         $data['total_registered_local_breed'] = $total_registered_local_breed;

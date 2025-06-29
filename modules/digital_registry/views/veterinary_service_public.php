@@ -1,7 +1,62 @@
+<!-- ===================== Styles ===================== -->
+<style>
+    .company-name {
+        color: #079455;
+        align-self: stretch;
+        font-family: Inter;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 120%; /* 24px */
+    }
+
+    
+    .label,
+    .reject-label,
+    .pending-label {
+        display: inline-flex;
+        align-items: center;
+        border-radius: 12px;
+        padding: 5px 10px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .label {
+        background-color: #e8f5e9;
+        border: 1px solid #4caf50;
+        color: #4caf50;
+    }
+
+    .label::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background-color: #4caf50;
+        border-radius: 50%;
+        margin-right: 8px;
+    }   
+
+    /* Remove default Bootstrap active background from pagination */
+.pagination .page-item.active .page-link {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #000 !important; /* Optional: change color to black */
+    font-weight: bold;
+}
+
+/* Optional: remove hover background */
+.pagination .page-link:hover {
+    background-color: #f0f0f0; /* or transparent */
+    color: #000;
+}
+
+</style>
+
 <div class="container mt-5">
     <h2 class="fw-semibold mb-4">Veterinary Professional Registry</h2>
     <p>Find A Veterinary Professional</p>
-    <div class="mb-4">
+    <div class="mb-4 card p-4">
         <input type="text" id="search-input" class="form-control" placeholder="Search by name or location">
     </div>
 

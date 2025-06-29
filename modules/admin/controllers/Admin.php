@@ -913,6 +913,42 @@ class Admin extends Trongate {
 
 	}
 
+public function count_last_week_service_providers_registrations(): int {
+    // Calculate the timestamp for 7 days ago
+    $seven_days_ago = strtotime('-7 days');
+
+    // Prepare SQL query
+    $sql = "SELECT COUNT(*) as total FROM service_providers WHERE date_created >= :seven_days_ago";
+
+    // Bind parameters
+    $params['seven_days_ago'] = $seven_days_ago;
+
+    // Run the query
+    $result = $this->model->query_bind($sql, $params, 'object');
+
+    // Return the count
+    return $result[0]->total ?? 0;
+}
+
+
+public function count_last_week_animal_registrations(): int {
+    // Calculate the timestamp for 7 days ago
+    $seven_days_ago = strtotime('-7 days');
+
+    // Prepare SQL query
+    $sql = "SELECT COUNT(*) as total FROM animal_registrations WHERE date_created >= :seven_days_ago";
+
+    // Bind parameters
+    $params['seven_days_ago'] = $seven_days_ago;
+
+    // Run the query
+    $result = $this->model->query_bind($sql, $params, 'object');
+
+    // Return the count
+    return $result[0]->total ?? 0;
+}
+
+
 
 	 // Access control for the Admin
 function _make_sure_allowed() {
